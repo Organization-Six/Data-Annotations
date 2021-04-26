@@ -31,25 +31,6 @@ public class PasteView extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PasteView frame = new PasteView();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public PasteView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(PasteView.class.getResource("/res/app.png")));
 		setTitle("\u6570\u636E\u6807\u6CE8");
@@ -131,6 +112,13 @@ public class PasteView extends JFrame {
 		JButton okButton = new JButton("\u786E\u5B9A");
 		okButton.setBounds(70, 195, 90, 25);
 		contentPane.add(okButton);
+		okButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				IndexView indexview = new IndexView();
+				indexview.setVisible(true);
+				dispose();
+			}
+		});
 
 		JButton cancelButton = new JButton("\u53D6\u6D88");
 		cancelButton.setBounds(270, 195, 90, 25);
