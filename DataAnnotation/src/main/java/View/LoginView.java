@@ -45,8 +45,7 @@ public class LoginView extends LoginJFrame {
 	public LoginView() {
 		super();
 		// TODO 自动生成的构造函数存根
-		setTitle("数据标注"); 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ShowLabelView.class.getResource("src/main/resources/image/img_dataannotation.png")));
+		setTitle("数据标注"); 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		init();		
