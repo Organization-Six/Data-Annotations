@@ -45,7 +45,8 @@ public class LoginView extends LoginJFrame {
 	public LoginView() {
 		super();
 		// TODO 自动生成的构造函数存根
-		setTitle("数据标注");                     
+		setTitle("数据标注"); 
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ShowLabelView.class.getResource("src/main/resources/image/img_dataannotation.png")));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		init();		
@@ -55,6 +56,7 @@ public class LoginView extends LoginJFrame {
 
 	private void init() {
 		this.setTitleBar("src/main/resources/image/img_dataannotation.png","数据标注");
+		
 		myHeight=this.getMyHeight();
 		myWidth=this.getMyWidth();
 		titleHeight=this.getTitleHeight();
@@ -156,7 +158,7 @@ public class LoginView extends LoginJFrame {
 					dispose();
 					IndexView indexView = new IndexView();
 					Point point=new Point(LoginView.this.getLocation().x-Math.abs(getBounds().width/2-indexView.getBounds().width/2),
-							LoginView.this.getLocation().y-Math.abs(getBounds().height/2-indexView.getBounds().height/2));
+							LoginView.this.getLocation().y+Math.abs(getBounds().height/2-indexView.getBounds().height/2));
 					indexView.setLocation(point);
 					indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					indexView.setVisible(true);
