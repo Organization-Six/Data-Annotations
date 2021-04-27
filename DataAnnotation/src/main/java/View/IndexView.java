@@ -59,7 +59,7 @@ public class IndexView extends JFrame {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public IndexView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ShowLabelView.class.getResource("/res/app.png")));
+		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());
 		setTitle("\u6570\u636E\u6807\u6CE8");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -205,7 +205,7 @@ public class IndexView extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-//删除项响应				
+//删除项响应		
 			}		
 		});	
 		

@@ -47,6 +47,7 @@ public class RegisterView extends LoginJFrame {
 		super();
 		// TODO 自动生成的构造函数存根
 		setTitle("数据标注"); 
+		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		init();		

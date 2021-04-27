@@ -1,9 +1,7 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -12,13 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import View.custom.LoginJFrame;
 import View.custom.MessageDialog;
 
-import javax.swing.JToolBar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -26,7 +22,6 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 public class LoginView extends LoginJFrame {
 	
@@ -44,8 +39,8 @@ public class LoginView extends LoginJFrame {
 	
 	public LoginView() {
 		super();
-		// TODO 自动生成的构造函数存根
-		setTitle("数据标注"); 	
+		setTitle("数据标注"); 
+		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		init();		
