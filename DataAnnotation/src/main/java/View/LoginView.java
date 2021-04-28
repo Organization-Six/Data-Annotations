@@ -168,8 +168,11 @@ public class LoginView extends LoginJFrame {
 		contentPane.add(loginBut);
 	}
 	
-	public void setText(String name, String pwd) {
+	public void setName(String name) {
 		userNameTf.setText(name);
+	}
+	
+	public void setPwd(String pwd) {
 		pwdTf.setText(pwd);
 	}
 	
