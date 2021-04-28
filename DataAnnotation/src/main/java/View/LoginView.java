@@ -153,7 +153,7 @@ public class LoginView extends LoginJFrame {
 					dispose();
 					IndexView indexView = new IndexView();
 					Point point=new Point(LoginView.this.getLocation().x-Math.abs(getBounds().width/2-indexView.getBounds().width/2),
-							LoginView.this.getLocation().y-Math.abs(getBounds().height/2-indexView.getBounds().height/2));
+							LoginView.this.getLocation().y+Math.abs(getBounds().height/2-indexView.getBounds().height/2));
 					indexView.setLocation(point);
 					indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					indexView.setVisible(true);
