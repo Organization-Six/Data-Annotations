@@ -94,6 +94,8 @@ public class PasteView extends JFrame {
 		labelIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ShowLabelView showlabelview = new ShowLabelView();
+				showlabelview.setLocation(PasteView.this.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
 				dispose();
 			}
@@ -104,6 +106,8 @@ public class PasteView extends JFrame {
 		chartIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ChartView chartview = new ChartView();
+				chartview.setLocation(PasteView.this.getLocation());
+				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				chartview.setVisible(true);
 				dispose();
 			}
@@ -115,6 +119,8 @@ public class PasteView extends JFrame {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IndexView indexview = new IndexView();
+				indexview.setLocation(PasteView.this.getLocation());
+				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				indexview.setVisible(true);
 				dispose();
 			}
@@ -126,6 +132,8 @@ public class PasteView extends JFrame {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				IndexView indexview = new IndexView();
+				indexview.setLocation(PasteView.this.getLocation());
+				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				indexview.setVisible(true);
 				dispose();
 			}

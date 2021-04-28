@@ -103,6 +103,8 @@ public class ShowLabelView extends JFrame {
 		chartIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ChartView chartview = new ChartView();
+				chartview.setLocation(ShowLabelView.this.getLocation());
+				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				chartview.setVisible(true);
 				dispose();
 			}
@@ -114,6 +116,8 @@ public class ShowLabelView extends JFrame {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PasteView pasteview = new PasteView();
+				pasteview.setLocation(ShowLabelView.this.getLocation());
+				pasteview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				pasteview.setVisible(true);
 				dispose();
 			}
@@ -125,6 +129,8 @@ public class ShowLabelView extends JFrame {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PasteView pasteview = new PasteView();
+				pasteview.setLocation(ShowLabelView.this.getLocation());
+				pasteview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				pasteview.setVisible(true);
 				dispose();
 			}
@@ -146,6 +152,8 @@ public class ShowLabelView extends JFrame {
 		createLabelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				CreateLabelView createlabelview = new CreateLabelView();
+				createlabelview.setLocation(ShowLabelView.this.getLocation());
+				createlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				createlabelview.setVisible(true);
 				dispose();
 			}

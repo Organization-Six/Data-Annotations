@@ -86,6 +86,8 @@ public class UpdateLabelView extends JFrame {
 		labelIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ShowLabelView showlabelview = new ShowLabelView();
+				showlabelview.setLocation(UpdateLabelView.this.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
 				dispose();
 			}
@@ -96,6 +98,8 @@ public class UpdateLabelView extends JFrame {
 		chartIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ChartView chartview = new ChartView();
+				chartview.setLocation(UpdateLabelView.this.getLocation());
+				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				chartview.setVisible(true);
 				dispose();
 			}
@@ -107,6 +111,8 @@ public class UpdateLabelView extends JFrame {
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ShowLabelView showlabelview = new ShowLabelView();
+				showlabelview.setLocation(UpdateLabelView.this.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
 				dispose();
 			}
@@ -118,6 +124,8 @@ public class UpdateLabelView extends JFrame {
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ShowLabelView showlabelview = new ShowLabelView();
+				showlabelview.setLocation(UpdateLabelView.this.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
 				dispose();
 			}
