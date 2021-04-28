@@ -28,7 +28,7 @@ public class MessageDialog extends JFrame {
 	private JLabel word;
 	private ActionListener listener;
 	
-	public MessageDialog(int x,int y,int width,int height,String str) {	
+	public MessageDialog(int x,int y,final int width,final int height,String str) {	
 		this.message=str;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -67,7 +67,6 @@ public class MessageDialog extends JFrame {
 		confirmBut.setBounds(width/4,13*height/20,width/2,height/5);
 		confirmBut.setBorder(null);
 		confirmBut.addActionListener(listener=new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				display();

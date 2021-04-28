@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.MatteBorder;
+//import com.sun.awt.AWTUtilities;
 
 import View.LoginView;
 

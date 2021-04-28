@@ -73,7 +73,6 @@ public class IndexView extends JFrame {
 		JMenuItem importMenuItem = new JMenuItem("\u5BFC\u5165\u6587\u4EF6");
 		importMenuItem.setIcon(null);
 		importMenuItem.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根	
 				String importStockID = JOptionPane.showInputDialog(IndexView.this,"请输入股票ID","导入评论",JOptionPane.PLAIN_MESSAGE);
@@ -83,7 +82,6 @@ public class IndexView extends JFrame {
 
 		JMenuItem exportMenuItem = new JMenuItem("\u5BFC\u51FA\u6587\u4EF6");
 		exportMenuItem.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String exportStockID = JOptionPane.showInputDialog(IndexView.this,"请输入需要下载的股票代码","",JOptionPane.PLAIN_MESSAGE);
@@ -93,7 +91,6 @@ public class IndexView extends JFrame {
 
 		JMenuItem exitMenuItem = new JMenuItem("\u9000\u51FA");
 		exitMenuItem.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				dispose();
@@ -184,14 +181,13 @@ public class IndexView extends JFrame {
 		pageSumLabel.setText("/"+pageSum);
 		contentPane.add(pageSumLabel);
 		
-		JPopupMenu popupMenu = new JPopupMenu(); 
+		final JPopupMenu popupMenu = new JPopupMenu(); 
 		JMenuItem jm1 = new JMenuItem("标注");
 		JMenuItem jm2 = new JMenuItem("删除") ;
 		popupMenu.add(jm1);
 		popupMenu.add(jm2);
 	
 		jm1.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根	
 				PasteView pasteView = new PasteView();
@@ -202,7 +198,6 @@ public class IndexView extends JFrame {
 			}		
 		});	
 		jm2.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //删除项响应		
@@ -216,7 +211,6 @@ public class IndexView extends JFrame {
 		list.setFixedCellWidth(list.getBounds().width);
 		list.setFixedCellHeight(list.getBounds().height/3);
 		list.setCellRenderer(new ListCellRenderer() {
-			@Override
 			public Component getListCellRendererComponent(JList arg0, Object arg1, int arg2, boolean arg3,
 					boolean arg4) {
 				// TODO 自动生成的方法存根
@@ -280,7 +274,6 @@ public class IndexView extends JFrame {
 		imgLeft.setBackground(new Color(240,240,240));
 		imgLeft.setBorder(null);
 		imgLeft.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				int a=Integer.valueOf(pageNoInput.getText());
@@ -302,7 +295,6 @@ public class IndexView extends JFrame {
 		imgRight.setBackground(new Color(240,240,240));
 		imgRight.setBorder(null);
 		imgRight.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根				
 				int a=Integer.valueOf(pageNoInput.getText());

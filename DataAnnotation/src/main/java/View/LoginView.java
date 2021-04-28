@@ -1,7 +1,9 @@
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -10,11 +12,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 
 import View.custom.LoginJFrame;
 import View.custom.MessageDialog;
 
+import javax.swing.JToolBar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -22,6 +26,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class LoginView extends LoginJFrame {
 	
@@ -39,8 +44,8 @@ public class LoginView extends LoginJFrame {
 	
 	public LoginView() {
 		super();
-		setTitle("数据标注"); 
-		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());
+		// TODO 自动生成的构造函数存根
+		setTitle("数据标注");                     
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		init();		
@@ -50,7 +55,6 @@ public class LoginView extends LoginJFrame {
 
 	private void init() {
 		this.setTitleBar("src/main/resources/image/img_dataannotation.png","数据标注");
-		
 		myHeight=this.getMyHeight();
 		myWidth=this.getMyWidth();
 		titleHeight=this.getTitleHeight();
@@ -71,7 +75,7 @@ public class LoginView extends LoginJFrame {
 	private void createInput() {
 		int lineHeight=32;
 		int lineWidth=4*myWidth/6-lineHeight-10;
-		String placeHolder1="用户名";
+		final String placeHolder1="用户名";
 		String placeHolder2="密码";
 		MatteBorder border = new MatteBorder(0, 0, 1, 0, new Color(121, 121,121));
 		
@@ -85,14 +89,12 @@ public class LoginView extends LoginJFrame {
 		userNameTf.setForeground(Color.GRAY);
 		userNameTf.setBorder(border);
 		userNameTf.addFocusListener(new FocusListener (){
-			 @Override
 			 public void focusGained(FocusEvent e) {
 				 userNameTf.setForeground(Color.BLACK);
 				 if(placeHolder1.equals(userNameTf.getText())) {
 					 userNameTf.setText("");					 
 				 }
 			 }
-			@Override
 			public void focusLost(FocusEvent arg0) {
 				loginUser=userNameTf.getText();
 				// TODO 自动生成的方法存根
@@ -125,7 +127,6 @@ public class LoginView extends LoginJFrame {
 		registerBut.setBorder(null);
 		
 		registerBut.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				dispose();
@@ -144,15 +145,15 @@ public class LoginView extends LoginJFrame {
 		loginBut.setBounds(myWidth/6,3*(myHeight-titleHeight)/4,4*myWidth/6,40);
 		loginBut.setBorder(new MatteBorder(0, 0, 1, 0, new Color(22,155,213)));
 		loginBut.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				//判断用户名密码正确否
+				setIsCorrect();
 				if(isCorrect) {
 					dispose();
 					IndexView indexView = new IndexView();
 					Point point=new Point(LoginView.this.getLocation().x-Math.abs(getBounds().width/2-indexView.getBounds().width/2),
-							LoginView.this.getLocation().y+Math.abs(getBounds().height/2-indexView.getBounds().height/2));
+							LoginView.this.getLocation().y-Math.abs(getBounds().height/2-indexView.getBounds().height/2));
 					indexView.setLocation(point);
 					indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					indexView.setVisible(true);
@@ -167,6 +168,11 @@ public class LoginView extends LoginJFrame {
 		contentPane.add(loginBut);
 	}
 	
+	public void setText(String name, String pwd) {
+		userNameTf.setText(name);
+		pwdTf.setText(pwd);
+	}
+	
 	public String getLoginUser() {
 		loginUser=userNameTf.getText();
 		return loginUser;
@@ -177,7 +183,14 @@ public class LoginView extends LoginJFrame {
 		return loginPwd;
 	}
 
-	public void setIsCorrect(boolean isCorrect) {
-		this.isCorrect = isCorrect;
+	public void setIsCorrect() {
+		if(getLoginUser().equals("2018054544") && getLoginPwd().equals("123456"))
+			this.isCorrect = true;
+		else
+			this.isCorrect = false;
+	}
+	
+	public boolean getIsCorrect() {
+		return isCorrect;
 	}
 }

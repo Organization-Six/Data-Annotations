@@ -125,7 +125,6 @@ public class ChartView extends JFrame {
 		JButton returnIndexButton = new JButton("\u8FD4\u56DE\u4E3B\u9875");
 		returnIndexButton.setBounds(163, 186, 97, 25);
 		returnIndexButton.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
 				IndexView indexView = new IndexView();

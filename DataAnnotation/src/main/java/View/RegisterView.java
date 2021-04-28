@@ -46,8 +46,7 @@ public class RegisterView extends LoginJFrame {
 	public RegisterView() {
 		super();
 		// TODO 自动生成的构造函数存根
-		setTitle("数据标注"); 
-		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());
+		setTitle("数据标注");                     
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		init();		
@@ -77,7 +76,7 @@ public class RegisterView extends LoginJFrame {
 	private void createInput() {
 		int lineHeight=32;
 		int lineWidth=4*myWidth/6-lineHeight-10;
-		String placeHolder1="用户名";
+		final String placeHolder1="用户名";
 		String placeHolder2="密码";
 		MatteBorder border = new MatteBorder(0, 0, 1, 0, new Color(121, 121,121));
 		
@@ -91,14 +90,12 @@ public class RegisterView extends LoginJFrame {
 		userNameTf.setForeground(Color.GRAY);
 		userNameTf.setBorder(border);
 		userNameTf.addFocusListener(new FocusListener (){
-			 @Override
 			 public void focusGained(FocusEvent e) {
 				 userNameTf.setForeground(Color.BLACK);
 				 if(placeHolder1.equals(userNameTf.getText())) {
 					 userNameTf.setText("");					 
 				 }
 			 }
-			@Override
 			public void focusLost(FocusEvent arg0) {
 				registerUser=userNameTf.getText();
 				// TODO 自动生成的方法存根
@@ -130,14 +127,12 @@ public class RegisterView extends LoginJFrame {
 		registerBut.setBounds(myWidth/6,3*(myHeight-titleHeight)/4,4*myWidth/6,40);
 		registerBut.setBorder(new MatteBorder(0, 0, 1, 0, new Color(22,155,213)));
 		registerBut.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				if(isCompliance) {
-					MessageDialog dialog=new MessageDialog(RegisterView.this.getLocation().x+65,RegisterView.this.getLocation().y+200
+					final MessageDialog dialog=new MessageDialog(RegisterView.this.getLocation().x+65,RegisterView.this.getLocation().y+200
 							,250,170,"注册成功");
 					dialog.setListener(new ActionListener() {
-						@Override
 						public void actionPerformed(ActionEvent e) {
 							// TODO 自动生成的方法存根
 							RegisterView.this.dispose();
