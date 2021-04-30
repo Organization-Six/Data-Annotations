@@ -21,106 +21,61 @@ import javax.swing.JEditorPane;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+
+import Model.Comment;
+import Model.CommentBank;
+import Model.Label;
+import Model.LabelBank;
+
 import javax.swing.JTree;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.Toolkit;
+import java.awt.Button;
+import java.awt.Color;
 
-public class CreateLabelView extends JFrame {
+public class CreateLabelView extends Frame {
 
-	private JPanel contentPane;
-
-	public CreateLabelView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(CreateLabelView.class.getResource("/res/app.png")));
-		setTitle("\u6570\u636E\u6807\u6CE8");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JMenu fileMenu = new JMenu("\u6587\u4EF6");
-		menuBar.add(fileMenu);
-
-		JMenuItem importMenuItem = new JMenuItem("\u5BFC\u5165\u6587\u4EF6");
-		importMenuItem.setIcon(null);
-		fileMenu.add(importMenuItem);
-
-		JMenuItem exportMenuItem = new JMenuItem("\u5BFC\u51FA\u6587\u4EF6");
-		fileMenu.add(exportMenuItem);
-
-		JMenuItem exitMenuItem = new JMenuItem("\u9000\u51FA");
-		fileMenu.add(exitMenuItem);
-
-		JMenu editMenu = new JMenu("\u7F16\u8F91");
-		menuBar.add(editMenu);
-
-		JMenuItem copyMenuItem = new JMenuItem("\u590D\u5236");
-		editMenu.add(copyMenuItem);
-
-		JMenuItem pasteMenuItem = new JMenuItem("\u7C98\u8D34");
-		editMenu.add(pasteMenuItem);
-
-		JMenu viewMenu = new JMenu("\u89C6\u56FE");
-		menuBar.add(viewMenu);
-
-		JMenuItem toolMenuItem = new JMenuItem("\u5DE5\u5177\u680F");
-		viewMenu.add(toolMenuItem);
-
-		JMenu helpMenu = new JMenu("\u5E2E\u52A9");
-		menuBar.add(helpMenu);
-
-		JMenuItem aboutMenuItem = new JMenuItem("\u5173\u4E8E");
-		helpMenu.add(aboutMenuItem);
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 130, 21);
-		contentPane.add(toolBar);
-
-		JButton fileIcon = new JButton(new ImageIcon(CreateLabelView.class.getResource("/res/file.png")));
-		toolBar.add(fileIcon);
-
-		JButton folderIcon = new JButton(new ImageIcon(CreateLabelView.class.getResource("/res/folder.png")));
-		toolBar.add(folderIcon);
-
-		JButton labelIcon = new JButton(new ImageIcon(CreateLabelView.class.getResource("/res/label.png")));
-		toolBar.add(labelIcon);
-		labelIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
-				showlabelview.setLocation(CreateLabelView.this.getLocation());
-				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showlabelview.setVisible(true);
-				dispose();
-			}
-		});
-
-		JButton chartIcon = new JButton(new ImageIcon(CreateLabelView.class.getResource("/res/chart.png")));
-		toolBar.add(chartIcon);
-		chartIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChartView chartview = new ChartView();
-				chartview.setLocation(CreateLabelView.this.getLocation());
-				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				chartview.setVisible(true);
-				dispose();
-			}
-		});
+	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
+	//private ArrayList<Label> labelList = new ArrayList<Label>();
+	private CommentBank cmtBank;
+	private LabelBank labBank;
+	
+	private final int index;
+	private int count = 0;
+	
+	JEditorPane labelTypeEditorPane;
+	JEditorPane label1EditorPane;
+	JEditorPane label2EditorPane;
+	
+	private ArrayList<JEditorPane> jepList = new ArrayList<JEditorPane>();
+	private ArrayList<JTextArea> jtaList = new ArrayList<JTextArea>();
+	
+	public CreateLabelView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
+		super();
+		this.cmtBank = cmtBank;
+		this.labBank = labBank;
+		this.index = index;
 
 		JButton okButton = new JButton("\u786E\u5B9A");
-		okButton.setBounds(70, 195, 90, 25);
+		okButton.setBounds(240, 550, 90, 25);
 		contentPane.add(okButton);
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
+				ArrayList<String> choiceList = new ArrayList<String>();
+				choiceList.add(label1EditorPane.getText());
+				choiceList.add(label2EditorPane.getText());
+				for(JEditorPane jep: jepList) {
+					choiceList.add(jep.getText());
+				}
+				Label label = new Label(labelTypeEditorPane.getText(),choiceList);
+				labBank.getLabel().add(label);
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
 				showlabelview.setLocation(CreateLabelView.this.getLocation());
 				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
@@ -129,11 +84,11 @@ public class CreateLabelView extends JFrame {
 		});
 
 		JButton cancelButton = new JButton("\u53D6\u6D88");
-		cancelButton.setBounds(270, 195, 90, 25);
+		cancelButton.setBounds(600, 550, 90, 25);
 		contentPane.add(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
 				showlabelview.setLocation(CreateLabelView.this.getLocation());
 				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
@@ -150,7 +105,7 @@ public class CreateLabelView extends JFrame {
 		JTextArea createLabel1 = new JTextArea();
 		createLabel1.setBackground(UIManager.getColor("Button.background"));
 		createLabel1.setText("\u8BF7\u8F93\u5165\u81EA\u5B9A\u4E49\u6807\u7B7E\u9009\u98791\uFF1A");
-		createLabel1.setBounds(65, 97, 150, 25);
+		createLabel1.setBounds(65, 100, 150, 25);
 		contentPane.add(createLabel1);
 
 		JTextArea createLabel2 = new JTextArea();
@@ -159,16 +114,36 @@ public class CreateLabelView extends JFrame {
 		createLabel2.setBounds(65, 140, 150, 25);
 		contentPane.add(createLabel2);
 
-		JEditorPane labelTypeEditorPane = new JEditorPane();
+		labelTypeEditorPane = new JEditorPane();
 		labelTypeEditorPane.setBounds(255, 55, 110, 21);
 		contentPane.add(labelTypeEditorPane);
 
-		JEditorPane label1EditorPane = new JEditorPane();
-		label1EditorPane.setBounds(255, 97, 110, 21);
+		label1EditorPane = new JEditorPane();
+		label1EditorPane.setBounds(255, 100, 110, 21);
 		contentPane.add(label1EditorPane);
 
-		JEditorPane label2EditorPane = new JEditorPane();
+		label2EditorPane = new JEditorPane();
 		label2EditorPane.setBounds(255, 140, 110, 21);
 		contentPane.add(label2EditorPane);
+		
+		Button addBtn = new Button("+");
+		addBtn.setForeground(Color.WHITE);
+		addBtn.setBackground(Color.BLUE);
+		addBtn.setBounds(839, 290, 121, 30);
+		addBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {			
+				jepList.add(new JEditorPane());
+				jepList.get(count).setBounds(255, (180+40*count), 110, 21);
+				contentPane.add(jepList.get(count));
+				
+				jtaList.add(new JTextArea());
+				jtaList.get(count).setText("请输入自定义标签选项"+(count+3)+"：");
+				jtaList.get(count).setBounds(65, (180+40*count), 150, 25);
+				contentPane.add(jtaList.get(count));
+				count ++;
+				
+			}
+		});
+		contentPane.add(addBtn);
 	}
 }

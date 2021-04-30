@@ -25,7 +25,7 @@ public class Spider {
 			}catch(IOException e1) {
 				throw new IOException();
 			}
-		}		
+		}
 		return comments;
 	}
 	
@@ -37,10 +37,11 @@ public class Spider {
 		ArrayList<String> urls = new ArrayList<String>();
 		String url = "https://xueqiu.com/query/v1/symbol/search/status?u=471618903549175&uuid=1384416939497107456&count=10&comment=0&symbol=&hl=0&source=all&sort=time&page=&q=&type=11&last_id=177653139&session_token=null&access_token=520e7bca78673752ed71e19b8820b5eb854123af";
 		url = url.replaceAll("symbol=.*?&", "symbol="+id+"&");
-		for(int page=1;page<=50;page++) {
+		for(int page=1;page<=2;page++) {
 			url = url.replaceAll("page=.*?&", "page="+page+"&");
 			urls.add(url);
 		}
+
 		return urls;
 	}
 	
@@ -81,7 +82,6 @@ public class Spider {
 					e2.printStackTrace();
 				}
 			}
-		
 		return result;
 	}
 	
@@ -111,6 +111,7 @@ public class Spider {
 			comments.add(replace(comment));
 			
 		}
+		
 		return comments;
 	}
 	

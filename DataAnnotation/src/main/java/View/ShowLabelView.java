@@ -2,8 +2,10 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,150 +15,218 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToolBar;
+import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Model.Comment;
+import Model.CommentBank;
+import Model.Label;
+import Model.LabelBank;
+
 import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JSplitPane;
 import javax.swing.JDesktopPane;
 import javax.swing.JInternalFrame;
 import javax.swing.JList;
+import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
-public class ShowLabelView extends JFrame {
+public class ShowLabelView extends Frame {
 
-	private JPanel contentPane;
+	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
+	//private ArrayList<Label> labelList = new ArrayList<Label>();
+	private CommentBank cmtBank;
+	private LabelBank labBank;
+	private final int index;
+	
+	private JList list;
+	DefaultListModel d = new DefaultListModel();
+	private String[] labels;
+	JTable labelTable;
+	DefaultTableModel tableModel;
+	
+	String[] columnNames = { "标签类型", "标签项" };
+	String[][] rowData;
+	public int row;
 
-	public ShowLabelView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ShowLabelView.class.getResource("/res/app.png")));
-		setTitle("\u6570\u636E\u6807\u6CE8");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+	public ShowLabelView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
+		super();
+		this.cmtBank = cmtBank;
+		this.labBank = labBank;
+		this.index = index;
 
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
 
-		JMenu fileMenu = new JMenu("\u6587\u4EF6");
-		menuBar.add(fileMenu);
-
-		JMenuItem importMenuItem = new JMenuItem("\u5BFC\u5165\u6587\u4EF6");
-		importMenuItem.setIcon(null);
-		fileMenu.add(importMenuItem);
-
-		JMenuItem exportMenuItem = new JMenuItem("\u5BFC\u51FA\u6587\u4EF6");
-		fileMenu.add(exportMenuItem);
-
-		JMenuItem exitMenuItem = new JMenuItem("\u9000\u51FA");
-		fileMenu.add(exitMenuItem);
-
-		JMenu editMenu = new JMenu("\u7F16\u8F91");
-		menuBar.add(editMenu);
-
-		JMenuItem copyMenuItem = new JMenuItem("\u590D\u5236");
-		editMenu.add(copyMenuItem);
-
-		JMenuItem pasteMenuItem = new JMenuItem("\u7C98\u8D34");
-		editMenu.add(pasteMenuItem);
-
-		JMenu viewMenu = new JMenu("\u89C6\u56FE");
-		menuBar.add(viewMenu);
-
-		JMenuItem toolMenuItem = new JMenuItem("\u5DE5\u5177\u680F");
-		viewMenu.add(toolMenuItem);
-
-		JMenu helpMenu = new JMenu("\u5E2E\u52A9");
-		menuBar.add(helpMenu);
-
-		JMenuItem aboutMenuItem = new JMenuItem("\u5173\u4E8E");
-		helpMenu.add(aboutMenuItem);
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 130, 21);
-		contentPane.add(toolBar);
-
-		JButton fileIcon = new JButton(new ImageIcon(ShowLabelView.class.getResource("/res/file.png")));
-		toolBar.add(fileIcon);
-
-		JButton folderIcon = new JButton(new ImageIcon(ShowLabelView.class.getResource("/res/folder.png")));
-		toolBar.add(folderIcon);
-
-		JButton labelIcon = new JButton(new ImageIcon(ShowLabelView.class.getResource("/res/label.png")));
-		toolBar.add(labelIcon);
-
-		JButton chartIcon = new JButton(new ImageIcon(ShowLabelView.class.getResource("/res/chart.png")));
-		toolBar.add(chartIcon);
 		chartIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ChartView chartview = new ChartView();
-				chartview.setLocation(ShowLabelView.this.getLocation());
-				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				chartview.setVisible(true);
-				dispose();
+				if(index == -1) {
+					ChartView chartview = new ChartView(cmtBank, labBank, -1);
+					chartview.setLocation(ShowLabelView.this.getLocation());
+					chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					chartview.setVisible(true);
+					dispose();
+				}
 			}
 		});
 
 		JButton okButton = new JButton("\u786E\u5B9A");
-		okButton.setBounds(70, 195, 90, 25);
+		okButton.setBounds(240, 550, 90, 25);
 		contentPane.add(okButton);
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PasteView pasteview = new PasteView();
-				pasteview.setLocation(ShowLabelView.this.getLocation());
-				pasteview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				pasteview.setVisible(true);
-				dispose();
+				if(index == -1) {
+					IndexView indexView = new IndexView(cmtBank, labBank);
+					indexView.setLocation(ShowLabelView.this.getLocation());
+					indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					indexView.setVisible(true);
+					dispose();
+				}
+				else {
+					PasteView pasteview = new PasteView(cmtBank, labBank, index);
+					pasteview.setLocation(ShowLabelView.this.getLocation());
+					pasteview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					pasteview.setVisible(true);
+					dispose();
+				}
 			}
 		});
 
 		JButton cancelButton = new JButton("\u53D6\u6D88");
-		cancelButton.setBounds(270, 195, 90, 25);
+		cancelButton.setBounds(600, 550, 90, 25);
 		contentPane.add(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PasteView pasteview = new PasteView();
-				pasteview.setLocation(ShowLabelView.this.getLocation());
-				pasteview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				pasteview.setVisible(true);
-				dispose();
+				if(index == -1) {
+					IndexView indexView = new IndexView(cmtBank, labBank);
+					indexView.setLocation(ShowLabelView.this.getLocation());
+					indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					indexView.setVisible(true);
+					dispose();
+				}
+				else {
+					PasteView pasteview = new PasteView(cmtBank, labBank, index);
+					pasteview.setLocation(ShowLabelView.this.getLocation());
+					pasteview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					pasteview.setVisible(true);
+					dispose();
+				}
 			}
 		});
-
+		
+		final JPopupMenu popupMenu = new JPopupMenu(); 
+		JMenuItem jm1 = new JMenuItem("修改");
+		JMenuItem jm2 = new JMenuItem("删除") ;
+		popupMenu.add(jm1);
+		popupMenu.add(jm2);
+		
+		jm1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根	
+				UpdateLabelView updateLabelView = new UpdateLabelView(cmtBank, labBank, index, row);
+				updateLabelView.setLocation(ShowLabelView.this.getLocation());
+				updateLabelView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				updateLabelView.setVisible(true);
+				dispose();
+			}		
+		});	
+		jm2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO 自动生成的方法存根
+//删除项响应		
+				if(row >= 0) {
+					System.out.println(labBank.getLabel().size()+"   111   " +row);
+					labBank.getLabel().remove(row);
+					//initData();
+					//ShowLabelView.this.revalidate();
+					ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
+					showlabelview.setLocation(ShowLabelView.this.getLocation());
+					showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					showlabelview.setVisible(true);
+					dispose();
+					
+					System.out.println(labBank.getLabel().size()+"222" + row);
+				}
+			}		
+		});	
+		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(45, 40, 350, 100);
+		scrollPane.setBounds(140, 40, 700, 400);
+
+		initData();
+		
+		labelTable = new JTable(rowData, columnNames);
+		
+		//labelTable = new JTable(d);
+		labelTable.setFont(new Font("宋体", Font.PLAIN, 12));
+		labelTable.setBounds(42, 100, 350, 100);	
+
+		labelTable.addMouseListener(new MouseAdapter(){
+           @Override 
+ 		   public void mousePressed(MouseEvent e) { 
+        	   if(e.isPopupTrigger()) {
+            		
+        	   }
+ 		   } 
+ 		   @Override 
+ 		   public void mouseReleased(MouseEvent e) {
+ 			  if(e.isPopupTrigger()) {
+ 				 row = labelTable.getSelectedRow();
+ 				 System.out.println(row);
+ 				 if(row >= 0) {
+ 					 popupMenu.show(e.getComponent(),e.getX(), e.getY()); 
+ 				 }
+ 			  }
+ 		   }  	  				
+
+        }); 
+
+		
+		scrollPane.setViewportView(labelTable);
 		contentPane.add(scrollPane);
 
-		String[] columnNames = { "\u6807\u7B7E\u7C7B\u578B", "\u6807\u7B7E\u9009\u98791", "\u6807\u7B7E\u9009\u98792" };
-		Object[][] rowData = { { "\u8BC4\u4EF7", "\u597D\u8BC4", "\u5DEE\u8BC4" },
-				{ "\u662F\u5426\u5E7F\u544A", "\u5E7F\u544A", "\u975E\u5E7F\u544A" }, };
-		JTable labelTable = new JTable(rowData, columnNames);
-		scrollPane.setViewportView(labelTable);
-
 		JButton createLabelButton = new JButton("+\u81EA\u5B9A\u4E49\u6807\u7B7E");
-		createLabelButton.setBounds(160, 150, 110, 25);
+		createLabelButton.setBounds(420, 480, 110, 25);
 		contentPane.add(createLabelButton);
 		createLabelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				CreateLabelView createlabelview = new CreateLabelView();
+				CreateLabelView createlabelview = new CreateLabelView(cmtBank, labBank, index);
 				createlabelview.setLocation(ShowLabelView.this.getLocation());
 				createlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				createlabelview.setVisible(true);
 				dispose();
 			}
 		});
+	}
+	
+	private void initData() {
+		int n = labBank.getLabel().size();
+		rowData = new String[n][2];
+		for(int i = 0; i < n; i++) {
+			rowData[i][0] = labBank.getLabel().get(i).getLabType();
+			String choices = "";
+			for(String c: labBank.getLabel().get(i).getLabChoise()) {
+				choices = choices + c +",";
+			}
+			rowData[i][1] = choices;
+			
+		}	
 	}
 }

@@ -6,6 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Model.Comment;
+import Model.CommentBank;
+import Model.Label;
+import Model.LabelBank;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -14,6 +20,10 @@ import javax.swing.JToolBar;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -26,74 +36,38 @@ import javax.swing.UIManager;
 import javax.swing.JScrollBar;
 import java.awt.Toolkit;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListModel;
 
-public class PasteView extends JFrame {
-
-	private JPanel contentPane;
-
-	public PasteView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(PasteView.class.getResource("/res/app.png")));
-		setTitle("\u6570\u636E\u6807\u6CE8");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JMenu fileMenu = new JMenu("\u6587\u4EF6");
-		menuBar.add(fileMenu);
-
-		JMenuItem importMenuItem = new JMenuItem("\u5BFC\u5165\u6587\u4EF6");
-		importMenuItem.setIcon(null);
-		fileMenu.add(importMenuItem);
-
-		JMenuItem exportMenuItem = new JMenuItem("\u5BFC\u51FA\u6587\u4EF6");
-		fileMenu.add(exportMenuItem);
-
-		JMenuItem exitMenuItem = new JMenuItem("\u9000\u51FA");
-		fileMenu.add(exitMenuItem);
-
-		JMenu editMenu = new JMenu("\u7F16\u8F91");
-		menuBar.add(editMenu);
-
-		JMenuItem copyMenuItem = new JMenuItem("\u590D\u5236");
-		editMenu.add(copyMenuItem);
-
-		JMenuItem pasteMenuItem = new JMenuItem("\u7C98\u8D34");
-		editMenu.add(pasteMenuItem);
-
-		JMenu viewMenu = new JMenu("\u89C6\u56FE");
-		menuBar.add(viewMenu);
-
-		JMenuItem toolMenuItem = new JMenuItem("\u5DE5\u5177\u680F");
-		viewMenu.add(toolMenuItem);
-
-		JMenu helpMenu = new JMenu("\u5E2E\u52A9");
-		menuBar.add(helpMenu);
-
-		JMenuItem aboutMenuItem = new JMenuItem("\u5173\u4E8E");
-		helpMenu.add(aboutMenuItem);
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 130, 21);
-		contentPane.add(toolBar);
-
-		JButton fileIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/file.png")));
-		toolBar.add(fileIcon);
-
-		JButton folderIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/folder.png")));
-		toolBar.add(folderIcon);
-
-		JButton labelIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/label.png")));
-		toolBar.add(labelIcon);
+public class PasteView extends Frame {
+	
+	private ArrayList<String> typeList = new ArrayList<String>();
+	private String[] types;
+	
+	private ArrayList<String> choiceList = new ArrayList<String>();
+	private String[] labels;
+	
+	private LabelBank labBank;
+	private CommentBank cmtBank;
+	//private ArrayList<Label> labelList = new ArrayList<Label>();
+	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
+	String item;
+	JComboBox labelComboBox;
+	JComboBox labelTypeComboBox;
+	
+	private final int index;
+	private Comment comment;
+	
+	public PasteView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
+		super();
+		this.labBank = labBank;
+		this.cmtBank = cmtBank;
+		this.index = index;
+		
+		initData();
+		
 		labelIcon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
 				showlabelview.setLocation(PasteView.this.getLocation());
 				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
@@ -101,24 +75,20 @@ public class PasteView extends JFrame {
 			}
 		});
 
-		JButton chartIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/chart.png")));
-		toolBar.add(chartIcon);
-		chartIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChartView chartview = new ChartView();
-				chartview.setLocation(PasteView.this.getLocation());
-				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				chartview.setVisible(true);
-				dispose();
-			}
-		});
 
 		JButton okButton = new JButton("\u786E\u5B9A");
 		okButton.setBounds(70, 195, 90, 25);
 		contentPane.add(okButton);
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IndexView indexview = new IndexView();
+				if(comment.isCmtIsMark()) {
+					comment.getLabelList().add(item);
+				}
+				else {
+					comment.setCmtIsMark(true);
+					comment.setLabelList(new ArrayList<String>(Arrays.asList(item)));
+				}
+				IndexView indexview = new IndexView(cmtBank, labBank);
 				indexview.setLocation(PasteView.this.getLocation());
 				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				indexview.setVisible(true);
@@ -131,7 +101,7 @@ public class PasteView extends JFrame {
 		contentPane.add(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				IndexView indexview = new IndexView();
+				IndexView indexview = new IndexView(cmtBank, labBank);
 				indexview.setLocation(PasteView.this.getLocation());
 				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				indexview.setVisible(true);
@@ -140,7 +110,7 @@ public class PasteView extends JFrame {
 		});
 
 		JTextPane commentTextPane = new JTextPane();
-		commentTextPane.setText("\u65E0\u6570\u636E");
+		commentTextPane.setText(comment.getCmtWriter()+" "+comment.getCmtTime()+" "+comment.getCmtText());
 		commentTextPane.setBounds(20, 40, 200, 130);
 		contentPane.add(commentTextPane);
 
@@ -156,13 +126,59 @@ public class PasteView extends JFrame {
 		labelTextArea.setBounds(245, 125, 56, 25);
 		contentPane.add(labelTextArea);
 
-		JComboBox labelTypeComboBox = new JComboBox();
-		labelTypeComboBox.setModel(new DefaultComboBoxModel(new String[] {"", "\u8BC4\u4EF7", "\u662F\u5426\u5E7F\u544A"}));
-		labelTypeComboBox.setBounds(330, 65, 90, 25);
-		contentPane.add(labelTypeComboBox);
+//		for(int i = 0; i < labBank.getLabel().size(); i++) {
+//			new ButtonGroup();
+//		}
+//		JRadioButton 
+//		labelTypeComboBox = new JComboBox();
+//		labelTypeComboBox.setModel(new DefaultComboBoxModel(types));
+//		labelTypeComboBox.setBounds(330, 65, 90, 25);
+//		labelTypeComboBox.addItemListener(new ItemListener() {
+//			public void itemStateChanged(ItemEvent e){
+//				if(e.getStateChange() == ItemEvent.SELECTED){
+//					String type = (String) e.getItem();
+//					for(int i = 0; i < labBank.getLabel().size(); i++) {
+//						if(labBank.getLabel().get(i).getLabType().equals(type)) {
+//							choiceList.clear();
+//							choiceList.add(" ");
+//							choiceList.addAll(labBank.getLabel().get(i).getLabChoise());
+//							labels = (String[]) choiceList.toArray(new String[0]);
+//							labelComboBox.setModel(new DefaultComboBoxModel(labels));
+//						}
+//					}
+//				}
+//			}
+//		});
+//		contentPane.add(labelTypeComboBox);
 
-		JComboBox labelComboBox = new JComboBox();
-		labelComboBox.setBounds(330, 125, 90, 25);
-		contentPane.add(labelComboBox);
+//		labelComboBox = new JComboBox();
+//		labelComboBox.setModel(new DefaultComboBoxModel(labels));
+//		labelComboBox.setBounds(330, 125, 90, 25);
+//		labelComboBox.addItemListener(new ItemListener() {
+//			public void itemStateChanged(ItemEvent e){
+//				if(e.getStateChange() == ItemEvent.SELECTED){
+//					item = (String) e.getItem();
+//				}
+//			}
+//		});
+//		contentPane.add(labelComboBox);
+	}
+	
+	private void initData() {
+		comment = cmtBank.getComment().get(index);
+		
+		typeList.add(" ");
+		choiceList.add(" ");
+		for(int i = 0; i < labBank.getLabel().size(); i++) {
+			Label label = labBank.getLabel().get(i);
+			typeList.add(label.getLabType());
+		}
+
+		
+		//lablist.addAll(label1.getLabChoise());
+		//lablist.addAll(label2.getLabChoise());
+		
+		types = (String[]) typeList.toArray(new String[0]); 
+		labels = (String[]) choiceList.toArray(new String[0]); 
 	}
 }

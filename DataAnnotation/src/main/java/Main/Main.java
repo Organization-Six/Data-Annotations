@@ -1,28 +1,50 @@
 package Main;
 
 import java.awt.EventQueue;
+import java.awt.GridLayout;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import View.LoginView;
+import Model.Chart;
+import Model.Comment;
+import Model.CommentBank;
+import Model.Label;
+import Model.LabelBank;
+import Model.Spider;
+import View.IndexView;
+//import View.LoginView;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+//		ArrayList<String> comment;
+//		comment = Spider.Load("SZ002304");
+//		for(String temp:comment) {
+//			System.out.println(temp);
+//		}
+		
+		
+		final CommentBank cmtBank = new CommentBank();
+		final LabelBank labBank = new LabelBank();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					LoginView login = new LoginView();
-					login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					login.setVisible(true);
+					//cmtBank.getComment().add(new Comment("无数据"," "," "));
+					IndexView index = new IndexView(cmtBank, labBank);
+					index.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+					index.setVisible(true);
 					
-					login.setIsCorrect();
+					//index.setIsCorrect();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
+		
+
 	}
 
 }

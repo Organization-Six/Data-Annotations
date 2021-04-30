@@ -1,4 +1,4 @@
-package View.custom;
+package View.dialog;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -38,7 +38,7 @@ public class MessageDialog extends JFrame {
 		SwingUtilities.invokeLater(new Runnable() {
 			@SuppressWarnings("restriction")
 			public void run() {
-				//Ô²½Ç
+				//Ô²ï¿½ï¿½
 				com.sun.awt.AWTUtilities.setWindowShape(MessageDialog.this,new RoundRectangle2D.Float(0,0,width,height,12f,12f));   
 				com.sun.awt.AWTUtilities.setWindowOpacity(MessageDialog.this, 1f);
 			}   
@@ -60,15 +60,15 @@ public class MessageDialog extends JFrame {
 		cp.add(myRootPane);
 		
 		secondPanel.setLayout(null);
-		confirmBut=new JButton("È·ÈÏ");
-		confirmBut.setFont(new Font("ËÎÌå",Font.BOLD,17));
+		confirmBut=new JButton("È·ï¿½ï¿½");
+		confirmBut.setFont(new Font("ï¿½ï¿½ï¿½ï¿½",Font.BOLD,17));
 		confirmBut.setForeground(new Color(255,255,255));
 		confirmBut.setBackground(new Color(22,155,213));
 		confirmBut.setBounds(width/4,13*height/20,width/2,height/5);
 		confirmBut.setBorder(null);
 		confirmBut.addActionListener(listener=new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO ×Ô¶¯Éú³ÉµÄ·½·¨´æ¸ù
+				// TODO ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ÉµÄ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				display();
 			}
 			
@@ -76,7 +76,7 @@ public class MessageDialog extends JFrame {
 		secondPanel.add(confirmBut);
 		
 		word = new JLabel(message,JLabel.LEFT);
-		word.setFont(new Font("ºÚÌå", Font.BOLD, 18));
+		word.setFont(new Font("ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 18));
 		word.setBounds(width/6,height/10,4*width/5,9*height/20);
 		word.setBorder(null);
 		secondPanel.add(word);

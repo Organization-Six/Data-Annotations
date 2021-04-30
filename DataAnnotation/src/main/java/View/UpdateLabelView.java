@@ -14,103 +14,52 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
+
+import Model.Comment;
+import Model.CommentBank;
+import Model.Label;
+import Model.LabelBank;
+
 import javax.swing.UIManager;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-public class UpdateLabelView extends JFrame {
+public class UpdateLabelView extends Frame {
 
-	private JPanel contentPane;
+	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
+	//private ArrayList<Label> labelList = new ArrayList<Label>();
+	private CommentBank cmtBank;
+	private LabelBank labBank;
+	
+	private final int index;
+	private final int row;
+	
+	JEditorPane[] ep;
+	JTextArea[] ta;
+	JEditorPane labelTypeEditorPane;
 
-	public UpdateLabelView() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(UpdateLabelView.class.getResource("/res/app.png")));
-		setTitle("\u6570\u636E\u6807\u6CE8");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JMenu fileMenu = new JMenu("\u6587\u4EF6");
-		menuBar.add(fileMenu);
-
-		JMenuItem importMenuItem = new JMenuItem("\u5BFC\u5165\u6587\u4EF6");
-		importMenuItem.setIcon(null);
-		fileMenu.add(importMenuItem);
-
-		JMenuItem exportMenuItem = new JMenuItem("\u5BFC\u51FA\u6587\u4EF6");
-		fileMenu.add(exportMenuItem);
-
-		JMenuItem exitMenuItem = new JMenuItem("\u9000\u51FA");
-		fileMenu.add(exitMenuItem);
-
-		JMenu editMenu = new JMenu("\u7F16\u8F91");
-		menuBar.add(editMenu);
-
-		JMenuItem copyMenuItem = new JMenuItem("\u590D\u5236");
-		editMenu.add(copyMenuItem);
-
-		JMenuItem pasteMenuItem = new JMenuItem("\u7C98\u8D34");
-		editMenu.add(pasteMenuItem);
-
-		JMenu viewMenu = new JMenu("\u89C6\u56FE");
-		menuBar.add(viewMenu);
-
-		JMenuItem toolMenuItem = new JMenuItem("\u5DE5\u5177\u680F");
-		viewMenu.add(toolMenuItem);
-
-		JMenu helpMenu = new JMenu("\u5E2E\u52A9");
-		menuBar.add(helpMenu);
-
-		JMenuItem aboutMenuItem = new JMenuItem("\u5173\u4E8E");
-		helpMenu.add(aboutMenuItem);
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 130, 21);
-		contentPane.add(toolBar);
-
-		JButton fileIcon = new JButton(new ImageIcon(UpdateLabelView.class.getResource("/res/file.png")));
-		toolBar.add(fileIcon);
-
-		JButton folderIcon = new JButton(new ImageIcon(UpdateLabelView.class.getResource("/res/folder.png")));
-		toolBar.add(folderIcon);
-
-		JButton labelIcon = new JButton(new ImageIcon(UpdateLabelView.class.getResource("/res/label.png")));
-		toolBar.add(labelIcon);
-		labelIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
-				showlabelview.setLocation(UpdateLabelView.this.getLocation());
-				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showlabelview.setVisible(true);
-				dispose();
-			}
-		});
-
-		JButton chartIcon = new JButton(new ImageIcon(UpdateLabelView.class.getResource("/res/chart.png")));
-		toolBar.add(chartIcon);
-		chartIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChartView chartview = new ChartView();
-				chartview.setLocation(UpdateLabelView.this.getLocation());
-				chartview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				chartview.setVisible(true);
-				dispose();
-			}
-		});
+	public UpdateLabelView(final CommentBank cmtBank, final LabelBank labBank, final int index, final int row) {
+		super();
+		this.cmtBank = cmtBank;
+		this.labBank = labBank;
+		this.index = index;
+		this.row = row;
+		
 
 		JButton okButton = new JButton("\u786E\u5B9A");
-		okButton.setBounds(70, 195, 90, 25);
+		okButton.setBounds(240, 550, 90, 25);
 		contentPane.add(okButton);
 		okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
+				labBank.getLabel().get(row).setLabType(labelTypeEditorPane.getText());
+				labBank.getLabel().get(row).getLabChoise().clear();
+				for(JEditorPane jep:ep) {
+					labBank.getLabel().get(row).getLabChoise().add(jep.getText());
+				}
+				
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
 				showlabelview.setLocation(UpdateLabelView.this.getLocation());
 				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
@@ -119,11 +68,11 @@ public class UpdateLabelView extends JFrame {
 		});
 
 		JButton cancelButton = new JButton("\u53D6\u6D88");
-		cancelButton.setBounds(270, 195, 90, 25);
+		cancelButton.setBounds(600, 550, 90, 25);
 		contentPane.add(cancelButton);
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView();
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
 				showlabelview.setLocation(UpdateLabelView.this.getLocation());
 				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				showlabelview.setVisible(true);
@@ -137,29 +86,30 @@ public class UpdateLabelView extends JFrame {
 		updateLabelType.setBounds(65, 55, 145, 25);
 		contentPane.add(updateLabelType);
 
-		JTextArea updateLabel1 = new JTextArea();
-		updateLabel1.setBackground(UIManager.getColor("Button.background"));
-		updateLabel1.setText("\u8BF7\u8F93\u5165\u4FEE\u6539\u540E\u6807\u7B7E\u9009\u98791\uFF1A");
-		updateLabel1.setBounds(65, 97, 150, 25);
-		contentPane.add(updateLabel1);
 
-		JTextArea updateLabel2 = new JTextArea();
-		updateLabel2.setBackground(UIManager.getColor("Button.background"));
-		updateLabel2.setText("\u8BF7\u8F93\u5165\u4FEE\u6539\u540E\u6807\u7B7E\u9009\u98792\uFF1A");
-		updateLabel2.setBounds(65, 140, 150, 25);
-		contentPane.add(updateLabel2);
-
-		JEditorPane labelTypeEditorPane = new JEditorPane();
+		labelTypeEditorPane = new JEditorPane();
 		labelTypeEditorPane.setBounds(255, 55, 110, 21);
+		labelTypeEditorPane.setText(labBank.getLabel().get(row).getLabType());
 		contentPane.add(labelTypeEditorPane);
+		
+		
+		int n = labBank.getLabel().get(row).getLabChoise().size();
+		ep = new JEditorPane[n];
+		ta = new JTextArea[n];
+		for(int i = 0; i < n; i++) {
+			ta[i] = new JTextArea();
+			ta[i].setBackground(UIManager.getColor("Button.background"));
+			ta[i].setText("请输入修改后标签选项"+(i+1)+"：");
+			ta[i].setBounds(65, (100+i*40), 150, 25);
+			contentPane.add(ta[i]);
+			
+			ep[i] = new JEditorPane();
+			ep[i].setBounds(255, (100+i*40), 110, 21);
+			ep[i].setText(labBank.getLabel().get(row).getLabChoise().get(i));
+			contentPane.add(ep[i]);
+		}
+		//System.out.println(hep[2]);
 
-		JEditorPane label1EditorPane = new JEditorPane();
-		label1EditorPane.setBounds(255, 97, 110, 21);
-		contentPane.add(label1EditorPane);
-
-		JEditorPane label2EditorPane = new JEditorPane();
-		label2EditorPane.setBounds(255, 140, 110, 21);
-		contentPane.add(label2EditorPane);
 	}
 
 }

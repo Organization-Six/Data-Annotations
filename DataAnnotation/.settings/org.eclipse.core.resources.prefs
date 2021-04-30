@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/Model/Chart.java=GBK
+encoding//src/main/java/Model/Comment.java=GBK
 encoding//src/main/java/Model/Spider.java=UTF-8
+encoding//src/main/java/View/ChartView.java=GBK
+encoding//src/main/java/View/Frame.java=GBK
+encoding//src/main/java/View/IndexView.java=GBK

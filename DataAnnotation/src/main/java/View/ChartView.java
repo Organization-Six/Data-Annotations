@@ -7,6 +7,9 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
@@ -22,96 +25,44 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
+
+import org.jfree.chart.ChartPanel;
+
+import Model.Chart;
+import Model.Comment;
+import Model.CommentBank;
+import Model.Label;
+import Model.LabelBank;
+import Model.Percent;
+
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class ChartView extends JFrame {
+public class ChartView extends Frame {
 
-	private JPanel contentPane;
 	private String[] labels= {" ","评价","是否广告"};	
 	
+	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
+	//private ArrayList<Label> labelList = new ArrayList<Label>();
+	private CommentBank cmtBank;
+	private LabelBank labBank;
+	
+	private final int index;
+	private int n;
+	private int[] counts;
+	
+	private ArrayList<String> choiceList = new ArrayList<String>();
+	private ArrayList<Percent> percent = new ArrayList<Percent>();
+	
+	private ChartPanel cp;
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public ChartView() {
-		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());
-		setTitle("\u6570\u636E\u6807\u6CE8");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-
-		JMenuBar menuBar = new JMenuBar();
-		setJMenuBar(menuBar);
-
-		JMenu fileMenu = new JMenu("\u6587\u4EF6");
-		menuBar.add(fileMenu);
-
-		JMenuItem importMenuItem = new JMenuItem("\u5BFC\u5165\u6587\u4EF6");
-		importMenuItem.setIcon(null);
-		fileMenu.add(importMenuItem);
-
-		JMenuItem exportMenuItem = new JMenuItem("\u5BFC\u51FA\u6587\u4EF6");
-		fileMenu.add(exportMenuItem);
-
-		JMenuItem exitMenuItem = new JMenuItem("\u9000\u51FA");
-		fileMenu.add(exitMenuItem);
-
-		JMenu editMenu = new JMenu("\u7F16\u8F91");
-		menuBar.add(editMenu);
-
-		JMenuItem copyMenuItem = new JMenuItem("\u590D\u5236");
-		editMenu.add(copyMenuItem);
-
-		JMenuItem pasteMenuItem = new JMenuItem("\u7C98\u8D34");
-		editMenu.add(pasteMenuItem);
-
-		JMenu viewMenu = new JMenu("\u89C6\u56FE");
-		menuBar.add(viewMenu);
-
-		JMenuItem toolMenuItem = new JMenuItem("\u5DE5\u5177\u680F");
-		viewMenu.add(toolMenuItem);
-
-		JMenu helpMenu = new JMenu("\u5E2E\u52A9");
-		menuBar.add(helpMenu);
-
-		JMenuItem aboutMenuItem = new JMenuItem("\u5173\u4E8E");
-		helpMenu.add(aboutMenuItem);
-
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 130, 21);
-		contentPane.add(toolBar);
-
-		JButton fileIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/file.png")));
-		toolBar.add(fileIcon);
-
-		JButton folderIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/folder.png")));
-		toolBar.add(folderIcon);
-
-		JButton labelIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/label.png")));
-		toolBar.add(labelIcon);
-		labelIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showLabelView = new ShowLabelView();
-				showLabelView.setLocation(ChartView.this.getLocation());
-				showLabelView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showLabelView.setVisible(true);
-				dispose();
-			}
-		});
+	public ChartView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
+		super();
+		this.cmtBank = cmtBank;
+		this.labBank = labBank;
+		this.index = index;
 		
-		JButton chartIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/chart.png")));
-		toolBar.add(chartIcon);
-		chartIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ChartView chartView = new ChartView();
-				chartView.setLocation(ChartView.this.getLocation());
-				chartView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				chartView.setVisible(true);
-				dispose();
-			}
-		});
 		
 		JComboBox labelComboBox = new JComboBox();
 		labelComboBox.setModel(new DefaultComboBoxModel(labels));
@@ -119,15 +70,59 @@ public class ChartView extends JFrame {
 		labelComboBox.setFont(new Font("宋体", Font.PLAIN, 12));
 		labelComboBox.setForeground(new Color(0, 0, 0));
 		labelComboBox.setBounds(28, 88, 102, 21);
-//下拉框变化的响应
+		//下拉框变化的响应
+		labelComboBox.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e){
+				if(e.getStateChange() == ItemEvent.SELECTED){
+					String type = (String) e.getItem();
+					percent.clear();
+					for(int i = 0; i < labBank.getLabel().size(); i++) {
+						if(labBank.getLabel().get(i).getLabType().equals(type)) {
+							choiceList = (ArrayList<String>) labBank.getLabel().get(i).getLabChoise().clone();
+							break;
+						}
+					}
+					System.out.println(choiceList);
+					n = choiceList.size();
+					counts = new int[n];
+					for(int i = 0; i < cmtBank.getComment().size(); i++) {
+						for(int j = 0; j < n; j++) {
+							if(cmtBank.getComment().get(i).getLabelList().contains(choiceList.get(j))) {
+								counts[j]++;
+								//sum++;
+							}
+						}
+					}
+					for(int i = 0; i < n; i++) {
+						percent.add(new Percent(choiceList.get(i), counts[i]));
+					}
+					
+					System.out.println(percent.get(0).getLabel()+percent.get(0).getPercent());
+					contentPane.remove(cp);
+					cp = new Chart(type+"标签统计饼图",percent).getChartPanel();
+					cp.updateUI();
+					cp.setBounds(200,25,500,400);
+					//cp.repaint();
+					System.out.println(cp);
+			    	contentPane.add(cp);
+			    	contentPane.repaint();
+			    	
+				}
+			}
+		});
 		contentPane.add(labelComboBox);
 		
+		cp = new Chart("测试",percent).getChartPanel();
+		cp.setBounds(200,25,500,400);
+		System.out.println(cp);
+    	contentPane.add(cp);
+		
 		JButton returnIndexButton = new JButton("\u8FD4\u56DE\u4E3B\u9875");
-		returnIndexButton.setBounds(163, 186, 97, 25);
+		returnIndexButton.setBounds(430, 550, 97, 25);
 		returnIndexButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// TODO 自动生成的方法存根
-				IndexView indexView = new IndexView();
+				IndexView indexView = new IndexView(cmtBank, labBank);
 				indexView.setLocation(ChartView.this.getLocation());
 				indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 				indexView.setVisible(true);
@@ -136,18 +131,18 @@ public class ChartView extends JFrame {
 		});
 		contentPane.add(returnIndexButton);
 		
-		JPanel chartPanel = new JPanel();
-		chartPanel.setBounds(189, 25, 172, 149);
-		chartPanel.setLayout(null);
-		contentPane.add(chartPanel);
+//		chartPanel = new JPanel();
+//		chartPanel.setBounds(189, 25, 500, 400);
+//		chartPanel.setLayout(null);
+//		contentPane.add(chartPanel);
 		
-//仅做占位用
-		JLabel lblNewLabel = new JLabel("\u663E\u793A\u997C\u56FE");
-		lblNewLabel.setSize(172, 149);
-		lblNewLabel.setLocation(0, 0);
-		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
-		lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		chartPanel.add(lblNewLabel);
+////仅做占位用
+//		JLabel lblNewLabel = new JLabel("\u663E\u793A\u997C\u56FE");
+//		lblNewLabel.setSize(172, 149);
+//		lblNewLabel.setLocation(0, 0);
+//		lblNewLabel.setFont(new Font("宋体", Font.PLAIN, 30));
+//		lblNewLabel.setBorder(BorderFactory.createLineBorder(Color.black));
+//		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		chartPanel.add(lblNewLabel);
 	}
 }
