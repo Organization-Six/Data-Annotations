@@ -37,7 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.Toolkit;
 import java.awt.Button;
-import java.awt.Color;
+import java.awt.Color; 
 
 public class CreateLabelView extends Frame {
 
