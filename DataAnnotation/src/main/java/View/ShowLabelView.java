@@ -175,9 +175,9 @@ public class ShowLabelView extends Frame {
 		labelTable = new JTable(rowData, columnNames);
 		
 		//labelTable = new JTable(d);
-		labelTable.setFont(new Font("宋体", Font.PLAIN, 12));
+		labelTable.setFont(new Font("宋体", Font.PLAIN, 15));
 		labelTable.setBounds(42, 100, 350, 100);	
-
+		labelTable.getTableHeader().setFont(new Font("宋体", Font.PLAIN, 16));
 		labelTable.addMouseListener(new MouseAdapter(){
            @Override 
  		   public void mousePressed(MouseEvent e) { 
