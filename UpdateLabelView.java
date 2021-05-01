@@ -2,11 +2,13 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JEditorPane;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -37,7 +39,7 @@ public class UpdateLabelView extends Frame {
 	private final int row;
 	
 	JEditorPane[] ep;
-	JTextArea[] ta;
+	JLabel[] ta;
 	JEditorPane labelTypeEditorPane;
 
 	public UpdateLabelView(final CommentBank cmtBank, final LabelBank labBank, final int index, final int row) {
@@ -80,31 +82,35 @@ public class UpdateLabelView extends Frame {
 			}
 		});
 
-		JTextArea updateLabelType = new JTextArea();
+		JLabel updateLabelType = new JLabel();
 		updateLabelType.setBackground(UIManager.getColor("Button.background"));
 		updateLabelType.setText("\u8BF7\u8F93\u5165\u4FEE\u6539\u540E\u6807\u7B7E\u7C7B\u578B\uFF1A");
-		updateLabelType.setBounds(65, 55, 145, 25);
+		updateLabelType.setFont(new Font("Monospaced", Font.PLAIN, 17));
+		updateLabelType.setBounds(150, 50, 200, 25);
 		contentPane.add(updateLabelType);
 
 
 		labelTypeEditorPane = new JEditorPane();
-		labelTypeEditorPane.setBounds(255, 55, 110, 21);
+		labelTypeEditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
+		labelTypeEditorPane.setBounds(340, 50, 190, 22);
 		labelTypeEditorPane.setText(labBank.getLabel().get(row).getLabType());
 		contentPane.add(labelTypeEditorPane);
 		
 		
 		int n = labBank.getLabel().get(row).getLabChoise().size();
 		ep = new JEditorPane[n];
-		ta = new JTextArea[n];
+		ta = new JLabel[n];
 		for(int i = 0; i < n; i++) {
-			ta[i] = new JTextArea();
+			ta[i] = new JLabel();
 			ta[i].setBackground(UIManager.getColor("Button.background"));
 			ta[i].setText("请输入修改后标签选项"+(i+1)+"：");
-			ta[i].setBounds(65, (100+i*40), 150, 25);
+			ta[i].setFont(new Font("Monospaced", Font.PLAIN, 17));
+			ta[i].setBounds(150, (90+i*40), 200, 25);
 			contentPane.add(ta[i]);
 			
 			ep[i] = new JEditorPane();
-			ep[i].setBounds(255, (100+i*40), 110, 21);
+			ep[i].setBounds(340, (90+i*40), 190, 22);
+			ep[i].setFont(new Font("宋体", Font.PLAIN, 16));
 			ep[i].setText(labBank.getLabel().get(row).getLabChoise().get(i));
 			contentPane.add(ep[i]);
 		}
