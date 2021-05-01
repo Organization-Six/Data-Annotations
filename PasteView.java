@@ -138,21 +138,21 @@ public class PasteView extends Frame {
 		labelRb1 = new JRadioButton();
 		labelRb1.setBounds(5,0,120,37);
 		labelRb1.setFont(new Font("宋体", Font.PLAIN, 14));
-		labelRb1.addActionListener(new LabelTypeListener());
+		labelRb1.addActionListener(new LabelListener());
 		labelPane.add(labelRb1);
 		labelButtonGroup.add(labelRb1);
 		
 		labelRb2 = new JRadioButton();
 		labelRb2.setBounds(130,0,120,37);
 		labelRb2.setFont(new Font("宋体", Font.PLAIN, 14));
-		labelRb2.addActionListener(new LabelTypeListener());
+		labelRb2.addActionListener(new LabelListener());
 		labelPane.add(labelRb2);
 		labelButtonGroup.add(labelRb2);
 		
 		labelRb3 = new JRadioButton();
 		labelRb3.setBounds(255,0,120,37);
 		labelRb3.setFont(new Font("宋体", Font.PLAIN, 14));
-		labelRb3.addActionListener(new LabelTypeListener());
+		labelRb3.addActionListener(new LabelListener());
 		labelPane.add(labelRb3);
 		labelButtonGroup.add(labelRb3);
 		
@@ -231,5 +231,13 @@ public class PasteView extends Frame {
 				}
 			}
 		}
+	}
+	
+	class LabelListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			// TODO 自动生成的方法存根
+			item = e.getActionCommand();
+//			System.out.println("选了"+item);
+		}		
 	}
 }
