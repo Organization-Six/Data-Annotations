@@ -117,10 +117,12 @@ public class IndexView extends Frame {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String exportStockID = JOptionPane.showInputDialog(IndexView.this,"请输入需要下载的股票代码","",JOptionPane.PLAIN_MESSAGE);
-				ArrayList<String> comments;
-				comments = Spider.Load(exportStockID);
-				
-				initDown(comments);
+				if(!exportStockID.isEmpty()) {
+					ArrayList<String> comments;
+					comments = Spider.Load(exportStockID);
+					
+					initDown(comments);
+				}				
 			}
 		});
 		

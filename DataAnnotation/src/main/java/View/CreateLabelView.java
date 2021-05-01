@@ -1,43 +1,21 @@
 package View;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JToolBar;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JList;
-import javax.swing.AbstractListModel;
-import javax.swing.JSpinner;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.JEditorPane;
-import javax.swing.JSplitPane;
 import javax.swing.JLabel;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
 
-import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
 
-import javax.swing.JTree;
-import javax.swing.JTextArea;
 import javax.swing.UIManager;
-import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.awt.Toolkit;
 import java.awt.Button;
-import java.awt.Color; 
+import java.awt.Color;
+import java.awt.Font; 
 
 public class CreateLabelView extends Frame {
 
@@ -54,7 +32,7 @@ public class CreateLabelView extends Frame {
 	JEditorPane label2EditorPane;
 	
 	private ArrayList<JEditorPane> jepList = new ArrayList<JEditorPane>();
-	private ArrayList<JTextArea> jtaList = new ArrayList<JTextArea>();
+	private ArrayList<JLabel> jtaList = new ArrayList<JLabel>();
 	
 	public CreateLabelView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
 		super();
@@ -96,52 +74,61 @@ public class CreateLabelView extends Frame {
 			}
 		});
 
-		JTextArea createLabelType = new JTextArea();
+		JLabel createLabelType = new JLabel();
+		createLabelType.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		createLabelType.setBackground(UIManager.getColor("Button.background"));
 		createLabelType.setText("\u8BF7\u8F93\u5165\u81EA\u5B9A\u4E49\u6807\u7B7E\u7C7B\u578B\uFF1A");
-		createLabelType.setBounds(65, 55, 145, 25);
+		createLabelType.setBounds(150, 50, 200, 25);
 		contentPane.add(createLabelType);
 
-		JTextArea createLabel1 = new JTextArea();
+		JLabel createLabel1 = new JLabel();
+		createLabel1.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		createLabel1.setBackground(UIManager.getColor("Button.background"));
 		createLabel1.setText("\u8BF7\u8F93\u5165\u81EA\u5B9A\u4E49\u6807\u7B7E\u9009\u98791\uFF1A");
-		createLabel1.setBounds(65, 100, 150, 25);
+		createLabel1.setBounds(150, 90, 200, 25);
 		contentPane.add(createLabel1);
 
-		JTextArea createLabel2 = new JTextArea();
+		JLabel createLabel2 = new JLabel();
+		createLabel2.setFont(new Font("Monospaced", Font.PLAIN, 17));
 		createLabel2.setBackground(UIManager.getColor("Button.background"));
 		createLabel2.setText("\u8BF7\u8F93\u5165\u81EA\u5B9A\u4E49\u6807\u7B7E\u9009\u98792\uFF1A");
-		createLabel2.setBounds(65, 140, 150, 25);
+		createLabel2.setBounds(150, 130, 200, 25);
 		contentPane.add(createLabel2);
 
 		labelTypeEditorPane = new JEditorPane();
-		labelTypeEditorPane.setBounds(255, 55, 110, 21);
+		labelTypeEditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
+		labelTypeEditorPane.setBounds(340, 50, 190, 22);
 		contentPane.add(labelTypeEditorPane);
 
 		label1EditorPane = new JEditorPane();
-		label1EditorPane.setBounds(255, 100, 110, 21);
+		label1EditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
+		label1EditorPane.setBounds(340, 90, 190, 22);
 		contentPane.add(label1EditorPane);
 
 		label2EditorPane = new JEditorPane();
-		label2EditorPane.setBounds(255, 140, 110, 21);
+		label2EditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
+		label2EditorPane.setBounds(340, 130, 190, 22);
 		contentPane.add(label2EditorPane);
 		
 		Button addBtn = new Button("+");
 		addBtn.setForeground(Color.WHITE);
 		addBtn.setBackground(Color.BLUE);
-		addBtn.setBounds(839, 290, 121, 30);
+		addBtn.setBounds(750, 50, 120, 35);
 		addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 				jepList.add(new JEditorPane());
-				jepList.get(count).setBounds(255, (180+40*count), 110, 21);
+				jepList.get(count).setBounds(340, (170+40*count), 190, 22);	
+				jepList.get(count).setFont(new Font("宋体", Font.PLAIN, 16));
 				contentPane.add(jepList.get(count));
 				
-				jtaList.add(new JTextArea());
+				jtaList.add(new JLabel());
 				jtaList.get(count).setText("请输入自定义标签选项"+(count+3)+"：");
-				jtaList.get(count).setBounds(65, (180+40*count), 150, 25);
+				jtaList.get(count).setBounds(150, (170+40*count), 200, 25);
+				jtaList.get(count).setFont(new Font("Monospaced", Font.PLAIN, 17));
+				jtaList.get(count).setBackground(UIManager.getColor("Button.background"));
 				contentPane.add(jtaList.get(count));
 				count ++;
-				
+				contentPane.repaint();	
 			}
 		});
 		contentPane.add(addBtn);
