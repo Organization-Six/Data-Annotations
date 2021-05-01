@@ -37,7 +37,6 @@ public class PasteView extends Frame {
 	JComboBox labelTypeComboBox;
 	
 	JPanel labelPane;
-	JRadioButton labelRb1,labelRb2,labelRb3;
 	
 	private final int index;
 	private Comment comment;
@@ -111,11 +110,11 @@ public class PasteView extends Frame {
 		labelLabel.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		labelLabel.setBackground(UIManager.getColor("Button.background"));
 		labelLabel.setText("\u9009\u62E9\u6807\u7B7E");
-		labelLabel.setBounds(565, 400, 90, 25);
+		labelLabel.setBounds(565, 350, 90, 25);
 		contentPane.add(labelLabel);
 		
 		JPanel labelTypePane = new JPanel();
-		labelTypePane.setBounds(570, 100, 375, 280);
+		labelTypePane.setBounds(570, 100, 375, 240);
 		labelTypePane.setLayout(null);
 		getContentPane().add(labelTypePane);
 		
@@ -130,31 +129,9 @@ public class PasteView extends Frame {
 		}
 		
 		labelPane = new JPanel();
-		labelPane.setBounds(570, 440, 375, 37);
+		labelPane.setBounds(570, 380, 375, 124);
 		labelPane.setLayout(null);
 		getContentPane().add(labelPane);
-		
-		ButtonGroup labelButtonGroup=new ButtonGroup();		
-		labelRb1 = new JRadioButton();
-		labelRb1.setBounds(5,0,120,37);
-		labelRb1.setFont(new Font("宋体", Font.PLAIN, 14));
-		labelRb1.addActionListener(new LabelListener());
-		labelPane.add(labelRb1);
-		labelButtonGroup.add(labelRb1);
-		
-		labelRb2 = new JRadioButton();
-		labelRb2.setBounds(130,0,120,37);
-		labelRb2.setFont(new Font("宋体", Font.PLAIN, 14));
-		labelRb2.addActionListener(new LabelListener());
-		labelPane.add(labelRb2);
-		labelButtonGroup.add(labelRb2);
-		
-		labelRb3 = new JRadioButton();
-		labelRb3.setBounds(255,0,120,37);
-		labelRb3.setFont(new Font("宋体", Font.PLAIN, 14));
-		labelRb3.addActionListener(new LabelListener());
-		labelPane.add(labelRb3);
-		labelButtonGroup.add(labelRb3);
 		
 //		for(int i = 0; i < labBank.getLabel().size(); i++) {
 //			new ButtonGroup();
@@ -211,11 +188,18 @@ public class PasteView extends Frame {
 		labels = (String[]) choiceList.toArray(new String[0]); 
 	}
 	
-	private void labelRefresh() {			
-		labelRb1.setText(labels[0]);
-		labelRb2.setText(labels[1]);
-		labelRb3.setText(labels[2]);
-		labelPane.repaint();		
+	private void labelRefresh() {
+		labelPane.removeAll();
+		ButtonGroup labelButtonGroup=new ButtonGroup();		
+		for(int i = 0; i < labels.length; i++) {
+			JRadioButton labelRb=new JRadioButton(labels[i]);			
+			labelRb.setBounds(5+i%3*125,i/3*20,120,20);
+			labelRb.setFont(new Font("宋体", Font.PLAIN, 14));
+			labelRb.addActionListener(new LabelListener());		
+			labelPane.add(labelRb);
+			labelButtonGroup.add(labelRb);
+		}	
+		labelPane.repaint();
 	}
 	
 	class LabelTypeListener implements ActionListener{
@@ -227,7 +211,7 @@ public class PasteView extends Frame {
 					choiceList.add(" ");
 					choiceList.addAll(labBank.getLabel().get(i).getLabChoise());
 					labels = (String[]) choiceList.toArray(new String[0]);
-					labelRefresh();
+					labelRefresh();				
 				}
 			}
 		}
