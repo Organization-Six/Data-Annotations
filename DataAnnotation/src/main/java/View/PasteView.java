@@ -17,8 +17,11 @@ import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
 import javax.swing.ButtonGroup;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
 
 public class PasteView extends Frame {
 	
@@ -93,8 +96,11 @@ public class PasteView extends Frame {
 			}
 		});
 
-		JTextPane commentTextPane = new JTextPane();
+		JLabel commentTextPane = new JLabel();
+		commentTextPane.setVerticalAlignment(SwingConstants.TOP);
 		commentTextPane.setFont(new Font("宋体", Font.PLAIN, 20));
+		commentTextPane.setOpaque(true); 
+		commentTextPane.setBackground(Color.WHITE);
 		commentTextPane.setText(comment.getCmtWriter()+" "+comment.getCmtTime()+" "+comment.getCmtText());
 		commentTextPane.setBounds(30, 55, 520, 450);
 		contentPane.add(commentTextPane);
@@ -122,7 +128,7 @@ public class PasteView extends Frame {
 		for(int i = 0; i < types.length; i++) {
 			JRadioButton labelType = new JRadioButton(types[i]);
 			labelType.setBounds(5,10+20*i,100,20);
-			labelType.setFont(new Font("宋体", Font.PLAIN, 14));
+			labelType.setFont(new Font("瀹嬩綋", Font.PLAIN, 14));
 			labelType.addActionListener(new LabelTypeListener());
 			labelTypePane.add(labelType);
 			labelTypeButtonGroup.add(labelType);
@@ -194,7 +200,7 @@ public class PasteView extends Frame {
 		for(int i = 0; i < labels.length; i++) {
 			JRadioButton labelRb=new JRadioButton(labels[i]);			
 			labelRb.setBounds(5+i%3*125,i/3*20,120,20);
-			labelRb.setFont(new Font("宋体", Font.PLAIN, 14));
+			labelRb.setFont(new Font("瀹嬩綋", Font.PLAIN, 14));
 			labelRb.addActionListener(new LabelListener());		
 			labelPane.add(labelRb);
 			labelButtonGroup.add(labelRb);
@@ -219,9 +225,9 @@ public class PasteView extends Frame {
 	
 	class LabelListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
-			// TODO 自动生成的方法存根
+			// TODO 鑷姩鐢熸垚鐨勬柟娉曞瓨鏍�
 			item = e.getActionCommand();
-//			System.out.println("选了"+item);
+//			System.out.println("閫変簡"+item);
 		}		
 	}
 }
