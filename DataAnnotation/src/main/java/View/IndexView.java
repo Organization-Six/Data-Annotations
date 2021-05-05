@@ -8,12 +8,14 @@ import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
 import Model.Spider;
+import Model.Spider.Data;
 import View.dialog.DownLoadDialog;
 import View.dialog.MessageDialog;
 
@@ -35,6 +37,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
@@ -42,6 +45,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Window.Type;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 import java.awt.Color;
@@ -92,7 +96,22 @@ public class IndexView extends Frame {
 		importMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根	
-				//String importStockID = JOptionPane.showInputDialog(IndexView.this,"请输入股票ID","导入评论",JOptionPane.PLAIN_MESSAGE);
+
+//				JFileChooser loadFileChooser=new JFileChooser();
+//				String loadFilePath;
+//				loadFileChooser.setDialogTitle("请选择加载文件");
+//				loadFileChooser.setCurrentDirectory(new File("./"));
+//				FileNameExtensionFilter filter = new FileNameExtensionFilter("文本文件(*.txt)", "txt");
+//				loadFileChooser.setFileFilter(filter);
+//				loadFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+//		        int option = loadFileChooser.showOpenDialog(null);		 // 显示文件打开对话框
+//		        if (option == JFileChooser.APPROVE_OPTION) {		// 确定用户按下打开按钮，而非取消按钮
+//		        	loadFilePath = loadFileChooser.getSelectedFile().getAbsolutePath();
+//			        System.out.println(loadFilePath);
+//		        }
+		        
+		        cmtBank.getComment().clear();
+				labBank.getLabel().clear();
 				cmtBank.Load();
 				labBank.Load();
 				System.out.println(cmtBank.getComment().get(0).getCmtText());
@@ -104,24 +123,43 @@ public class IndexView extends Frame {
 		exportMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				//String exportStockID = JOptionPane.showInputDialog(IndexView.this,"请输入需要下载的股票代码","",JOptionPane.PLAIN_MESSAGE);
-				//cmtBank.setComment(cmtList);
-				cmtBank.Save();
-				//labBank.setLabel(labelList);
+//				JFileChooser saveFileChooser = new JFileChooser();
+//				saveFileChooser.setDialogTitle("请选择保存路径");
+//				saveFileChooser.setCurrentDirectory(new File("./"));
+//			    int retval = saveFileChooser.showSaveDialog(null);
+//			    if (retval == JFileChooser.APPROVE_OPTION) {
+//			    	File file = saveFileChooser.getSelectedFile();
+//			    	if (file == null) {
+//			    		return;
+//			    	}
+//			    	if (!file.getName().toLowerCase().endsWith(".txt")) {
+//			    		file = new File(file.getParentFile(), file.getName() + ".txt");
+//			    	}
+//			    	System.out.println(file.getAbsolutePath());
+//			    }
+			    
+		    	cmtBank.Save();
 				labBank.Save();
 				JOptionPane.showMessageDialog(IndexView.this, "导出成功");
+				cmtBank.getComment().clear();
+				labBank.getLabel().clear();
+				d.clear();
+				initData();
+				labelComboBox.setModel(new DefaultComboBoxModel(labels));
+
 			}
 		});
 		
 		downloadMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				String exportStockID = JOptionPane.showInputDialog(IndexView.this,"请输入需要下载的股票代码","",JOptionPane.PLAIN_MESSAGE);
-				if(!exportStockID.isEmpty()) {
-					ArrayList<String> comments;
+				String exportStockID = null;
+				exportStockID = JOptionPane.showInputDialog(IndexView.this,"请输入需要下载的股票代码","输入股票代码",JOptionPane.PLAIN_MESSAGE);
+				if(!(exportStockID.isEmpty())) {
+					ArrayList<Data> comments;
 					comments = Spider.Load(exportStockID);
 					
-					initDown(comments);
+					initDown(cmtBank.getComment(), comments);
 				}				
 			}
 		});
@@ -288,6 +326,7 @@ public class IndexView extends Frame {
 	
 	private void initData() {
 		//只有默认的模型有添加/删除方法
+		choiceList.clear();
 		d.clear();
 		if(cmtBank.getComment().size() == 0) {
 			d.addElement("无数据");
@@ -307,20 +346,23 @@ public class IndexView extends Frame {
 		//System.out.println(cmtBank.getComment().get(0).getCmtText());
 	}
 	
-	private void initDown(ArrayList<String> comments) {
+	private void initDown(ArrayList<Comment> cmtList, ArrayList<Data> comments) {
 		d.clear();
-		//cmtList.clear();
-		int n = comments.size();
-		dialog = new DownLoadDialog(null,"下载窗口",comments);
+		cmtBank.getComment().clear();
+		labBank.getLabel().clear();
+
+		dialog = new DownLoadDialog(null,"下载窗口", cmtList, comments);
 		dialog.setModal(true);
 		dialog.setVisible(true);
 		
-//		for(String comment: comments) {
+//		for(String comment: cmtBank) {
 //			//cmtBank.getComment().add(comment);
 //			//d.addElement(comment.getCmtWriter()+ " - "+comment.getCmtTime()+" - "+comment.getCmtText());
 //			d.addElement(comment);
 //		}
 //		System.out.println(d.getSize());
+		initData();
+		labelComboBox.setModel(new DefaultComboBoxModel(labels));
 		list = new JList(d);
 
 
@@ -328,20 +370,22 @@ public class IndexView extends Frame {
 	private void initImport() {
 		//cmtBank = new CommentBank();
 		//cmtBank.Load();
-		d.clear();
-		for(int i = 0; i < cmtBank.getComment().size(); i++){
-			Comment comment = cmtBank.getComment().get(i);
-			d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
-		}
-		
-		//labBank = new LabelBank();
-		//labBank.Load();
-		for(int i = 0; i < labBank.getLabel().size(); i++){
-			Label label = labBank.getLabel().get(i);
-			choiceList.addAll(label.getLabChoise());			
-		}
-		labels = (String[]) choiceList.toArray(new String[0]);
+		initData();
 		labelComboBox.setModel(new DefaultComboBoxModel(labels));
+//		d.clear();
+//		for(int i = 0; i < cmtBank.getComment().size(); i++){
+//			Comment comment = cmtBank.getComment().get(i);
+//			d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+//		}
+//		
+//		//labBank = new LabelBank();
+//		//labBank.Load();
+//		for(int i = 0; i < labBank.getLabel().size(); i++){
+//			Label label = labBank.getLabel().get(i);
+//			choiceList.addAll(label.getLabChoise());			
+//		}
+//		labels = (String[]) choiceList.toArray(new String[0]);
+//		labelComboBox.setModel(new DefaultComboBoxModel(labels));
 
 	}
 	

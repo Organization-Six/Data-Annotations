@@ -21,6 +21,8 @@ import javax.swing.ButtonGroup;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 public class PasteView extends Frame {
@@ -95,32 +97,40 @@ public class PasteView extends Frame {
 				dispose();
 			}
 		});
+		
 
-		JLabel commentTextPane = new JLabel();
-		commentTextPane.setVerticalAlignment(SwingConstants.TOP);
+		JTextArea commentTextPane = new JTextArea();
+		JScrollPane js=new JScrollPane(commentTextPane);
+		js.setBounds(30, 55,535, 450);
+		js.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		
 		commentTextPane.setFont(new Font("宋体", Font.PLAIN, 20));
 		commentTextPane.setOpaque(true); 
 		commentTextPane.setBackground(Color.WHITE);
 		commentTextPane.setText(comment.getCmtWriter()+" "+comment.getCmtTime()+" "+comment.getCmtText());
 		commentTextPane.setBounds(30, 55, 520, 450);
-		contentPane.add(commentTextPane);
-
+		commentTextPane.setDisabledTextColor(Color.BLACK);
+		commentTextPane.setLineWrap(true);
+		commentTextPane.disable();
+		
+		contentPane.add(js);
+		
 		JLabel labelTypeLabel = new JLabel();
 		labelTypeLabel.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		labelTypeLabel.setBackground(UIManager.getColor("Button.background"));
 		labelTypeLabel.setText("\u9009\u62E9\u6807\u7B7E\u7C7B\u578B");
-		labelTypeLabel.setBounds(565, 65, 124, 27);
+		labelTypeLabel.setBounds(575, 65, 124, 27);
 		contentPane.add(labelTypeLabel);
 
 		JLabel labelLabel = new JLabel();
 		labelLabel.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		labelLabel.setBackground(UIManager.getColor("Button.background"));
 		labelLabel.setText("\u9009\u62E9\u6807\u7B7E");
-		labelLabel.setBounds(565, 350, 90, 25);
+		labelLabel.setBounds(575, 350, 90, 25);
 		contentPane.add(labelLabel);
 		
 		JPanel labelTypePane = new JPanel();
-		labelTypePane.setBounds(570, 100, 375, 240);
+		labelTypePane.setBounds(580, 100, 375, 240);
 		labelTypePane.setLayout(null);
 		getContentPane().add(labelTypePane);
 		
@@ -135,7 +145,7 @@ public class PasteView extends Frame {
 		}
 		
 		labelPane = new JPanel();
-		labelPane.setBounds(570, 380, 375, 124);
+		labelPane.setBounds(580, 380, 375, 124);
 		labelPane.setLayout(null);
 		getContentPane().add(labelPane);
 		

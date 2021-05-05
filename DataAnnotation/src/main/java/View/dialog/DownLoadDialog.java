@@ -6,17 +6,20 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+import Model.Comment;
 import Model.DownLoadBar;
+import Model.Spider.Data;
 
 public class DownLoadDialog extends JDialog{
-	private ArrayList<String> cmtList = new ArrayList<String>();
-	private ArrayList<String> strList;
+	private ArrayList<Comment> cmtList;
+	private ArrayList<Data> dataList;
 	
-	public DownLoadDialog(JFrame f,String s, ArrayList<String> strList) { 				//构造方法	
+	public DownLoadDialog(JFrame f,String s, ArrayList<Comment> cmtList, ArrayList<Data> dataList) { 				//构造方法	
 	       super(f,s);
-	       this.strList = strList;
+	       this.cmtList = cmtList;
+	       this.dataList = dataList;
 	       
-	       setBounds(800, 400, 350, 200);		//设置大小，要与验证图片匹配
+	       setBounds(800, 400, 350, 200);
 	       final JPanel panel = new JPanel();  
            final JLabel label = new JLabel();
            
@@ -26,7 +29,7 @@ public class DownLoadDialog extends JDialog{
 	       JPanel stp = new JPanel();  
            JProgressBar jpb = new JProgressBar();  
            jpb.setMinimum(1);  
-           jpb.setMaximum(strList.size());  
+           jpb.setMaximum(dataList.size());  
            stp.add(jpb);  
            stp.add(label);
            add(stp,BorderLayout.CENTER);
@@ -41,8 +44,7 @@ public class DownLoadDialog extends JDialog{
    				   dispose();
    			   }
    		   });
-           DownLoadBar sw = new DownLoadBar(label, panel, jpb, cmtList, strList);  
-           sw.execute();
-	       //add(layeredPane,BorderLayout.CENTER);	//加入到验证对话框的中间       	       
+           DownLoadBar sw = new DownLoadBar(label, panel, jpb, cmtList, dataList);  
+           sw.execute();       	       
 	}
 }

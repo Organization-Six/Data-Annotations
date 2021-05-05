@@ -40,7 +40,7 @@ import javax.swing.SwingConstants;
 
 public class ChartView extends Frame {
 
-	private String[] labels= {" ","评价","是否广告"};	
+	private String[] labels= {" "};	
 	
 	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
 	//private ArrayList<Label> labelList = new ArrayList<Label>();
@@ -63,6 +63,12 @@ public class ChartView extends Frame {
 		this.labBank = labBank;
 		this.index = index;
 		
+		choiceList.add(" ");
+		for(int i = 0; i < labBank.getLabel().size(); i++){
+			Label label = labBank.getLabel().get(i);
+			choiceList.add(label.getLabType());			
+		}
+		labels = (String[]) choiceList.toArray(new String[0]);
 		
 		JComboBox labelComboBox = new JComboBox();
 		labelComboBox.setModel(new DefaultComboBoxModel(labels));

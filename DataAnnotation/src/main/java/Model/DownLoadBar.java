@@ -11,35 +11,36 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;  
 import javax.swing.SwingWorker;
 
+import Model.Spider.Data;
 import View.IndexView; 
 
-public class DownLoadBar extends SwingWorker<ArrayList<String>,String>{  
+public class DownLoadBar extends SwingWorker<ArrayList<Comment>,String>{  
 	  
     private JLabel status;  
     private JPanel viewer;    
     private JProgressBar jpb;
-    private ArrayList<String> cmtList;
-    private ArrayList<String> strList;
+    private ArrayList<Comment> cmtList;
+    private ArrayList<Data> dataList;
     public static boolean isStop = false;
     
-	public DownLoadBar(JLabel status, JPanel viewer, JProgressBar jpb, ArrayList<String> cmtList, ArrayList<String> strList){  
+	public DownLoadBar(JLabel status, JPanel viewer, JProgressBar jpb, ArrayList<Comment> cmtList, ArrayList<Data> dataList){  
         this.status = status;  
         this.viewer = viewer;    
         this.jpb = jpb;
         this.cmtList = cmtList;
-        this.strList = strList;
+        this.dataList = dataList;
     }  
   
     @Override  
-    protected ArrayList<String> doInBackground() throws Exception {   
-        for(int i = 0; i < strList.size(); i++){
+    protected ArrayList<Comment> doInBackground() throws Exception {   
+        for(int i = 0; i < dataList.size(); i++){
         	if(isStop) {
         		break;
         	}
-        	cmtList.add(strList.get(i));
-        	Thread.sleep(3000);
-        	System.out.println("已经加载了  "+(i+1)+"/"+strList.size());
-            publish("已经加载了  ("+(i+1)+")/"+strList.size());  
+        	cmtList.add(new Comment(dataList.get(i).getComment(), dataList.get(i).getName(), dataList.get(i).getTime()));
+        	Thread.sleep(20);
+        	System.out.println("已经加载了  "+(i+1)+"/"+dataList.size());
+            publish("已经加载了  ("+(i+1)+")/"+dataList.size());  
         }  
         return cmtList;  
     }  

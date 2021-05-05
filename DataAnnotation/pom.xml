@@ -36,6 +36,42 @@
 	    <version>1.0.19</version>
 	</dependency>
 	
-	</dependencies>
-	
+
+    <!-- appium自动化测试工具 -->
+    <dependency>
+    	<groupId>io.appium</groupId>
+    	<artifactId>java-client</artifactId>
+    	<version>7.0.0</version>
+    	<scope>test</scope>
+    </dependency>
+    <!-- testng测试框架 -->
+    <dependency>
+    	<groupId>org.testng</groupId>
+    	<artifactId>testng</artifactId>
+    	<version>7.1.0</version>
+    	<scope>test</scope>
+    </dependency>
+    <!-- 基于selenium的自动化测试工具 -->
+    <dependency>
+    	<groupId>org.seleniumhq.selenium</groupId>
+    	<artifactId>selenium-java</artifactId>
+    	<version>3.14.0</version>
+    </dependency>
+</dependencies>
+<!-- 定位testng.xml,执行指定测试操作 -->
+<build>
+  <plugins>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-surefire-plugin</artifactId>
+           <version>2.19</version>
+           <configuration>
+              <suiteXmlFiles>
+                 <suiteXmlFile>src/test/java/com/wyj/qt/ui/test/testcase/testng.xml</suiteXmlFile>
+              </suiteXmlFiles>
+           </configuration>
+     </plugin>
+  </plugins>
+</build>
+
 </project>

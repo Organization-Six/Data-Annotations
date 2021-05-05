@@ -85,17 +85,17 @@ public class Frame extends JFrame {
 		toolBar.setBounds(0, 0, 130, 21);
 		contentPane.add(toolBar);
 
-		JButton fileIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/file.png")));
+		JButton fileIcon = new JButton(new ImageIcon(Frame.class.getResource("file.png")));
 		toolBar.add(fileIcon);
 
-		JButton folderIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/folder.png")));
+		JButton folderIcon = new JButton(new ImageIcon(Frame.class.getResource("folder.png")));
 		toolBar.add(folderIcon);
 
-		labelIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/label.png")));
+		labelIcon = new JButton(new ImageIcon(Frame.class.getResource("label.png")));
 		toolBar.add(labelIcon);
 		
 		
-		chartIcon = new JButton(new ImageIcon(PasteView.class.getResource("/res/chart.png")));
+		chartIcon = new JButton(new ImageIcon(Frame.class.getResource("chart.png")));
 		toolBar.add(chartIcon);
 	}
 
