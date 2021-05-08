@@ -48,6 +48,15 @@ public class CreateLabelController {
 				view.dispose();
 			}
 		});
+		CreateLabelView.cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
+				showlabelview.setLocation(view.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				showlabelview.setVisible(true);
+				view.dispose();
+			}
+		});
 		CreateLabelView.addBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
 				jepList.add(new JEditorPane());

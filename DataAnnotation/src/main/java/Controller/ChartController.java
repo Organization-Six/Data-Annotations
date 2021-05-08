@@ -1,10 +1,13 @@
 package Controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 
 import Model.Chart;
 import Model.CommentBank;
@@ -12,6 +15,7 @@ import Model.Label;
 import Model.LabelBank;
 import Model.Percent;
 import View.ChartView;
+import View.IndexView;
 
 public class ChartController {
 	private ArrayList<String> choiceList = new ArrayList<String>();
@@ -24,7 +28,7 @@ public class ChartController {
 	private int[] counts;
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ChartController(final CommentBank cmtBank, final LabelBank labBank, final int index) {		
+	public ChartController(final CommentBank cmtBank, final LabelBank labBank, final int index,final ChartView view) {		
 		// TODO 自动生成的构造函数存根
 		this.cmtBank = cmtBank;
 		this.labBank = labBank;
@@ -77,9 +81,18 @@ public class ChartController {
 					ChartView.contentPane.repaint();			    	
 				}
 			}
+		});	
+		ChartView.cp = new Chart("测试",percent).getChartPanel();	
+		ChartView.returnIndexButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// TODO 自动生成的方法存根
+				IndexView indexView = new IndexView(cmtBank, labBank);
+				indexView.setLocation(view.getLocation());
+				indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				indexView.setVisible(true);
+				view.dispose();	
+			}
 		});
-		
-		ChartView.cp = new Chart("测试",percent).getChartPanel();		
 	}
 
 }

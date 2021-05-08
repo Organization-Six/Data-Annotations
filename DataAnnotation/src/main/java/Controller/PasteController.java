@@ -16,6 +16,7 @@ import Model.Label;
 import Model.LabelBank;
 import View.IndexView;
 import View.PasteView;
+import View.ShowLabelView;
 
 public class PasteController {
 	private ArrayList<String> typeList = new ArrayList<String>();
@@ -36,7 +37,16 @@ public class PasteController {
 		this.cmtBank = cmtBank;
 		this.index = index;
 		initData();
-				
+		
+		PasteView.labelIcon.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
+				showlabelview.setLocation(view.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				showlabelview.setVisible(true);
+				view.dispose();
+			}
+		});		
 		PasteView.okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(comment.isCmtIsMark()) {
@@ -46,6 +56,15 @@ public class PasteController {
 					comment.setCmtIsMark(true);
 					comment.setLabelList(new ArrayList<String>(Arrays.asList(item)));
 				}
+				IndexView indexview = new IndexView(cmtBank, labBank);
+				indexview.setLocation(view.getLocation());
+				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				indexview.setVisible(true);
+				view.dispose();
+			}
+		});
+		PasteView.cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				IndexView indexview = new IndexView(cmtBank, labBank);
 				indexview.setLocation(view.getLocation());
 				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

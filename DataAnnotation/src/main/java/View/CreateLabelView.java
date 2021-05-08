@@ -34,7 +34,7 @@ public class CreateLabelView extends Frame {
 	public static JEditorPane labelTypeEditorPane;
 	public static JEditorPane label1EditorPane;
 	public static JEditorPane label2EditorPane;
-	public static JButton okButton,addBtn;
+	public static JButton okButton,addBtn,cancelButton;
 //	private ArrayList<JEditorPane> jepList = new ArrayList<JEditorPane>();
 //	private ArrayList<JLabel> jtaList = new ArrayList<JLabel>();
 	
@@ -42,24 +42,18 @@ public class CreateLabelView extends Frame {
 		super();
 		
 		okButton = new JButton("\u786E\u5B9A");
+		cancelButton = new JButton("\u53D6\u6D88");
 		addBtn = new JButton("+");
+		labelTypeEditorPane = new JEditorPane();
+		label1EditorPane = new JEditorPane();
+		label2EditorPane = new JEditorPane();
 		controller = new CreateLabelController(cmtBank,labBank,index,this);
 			
 		okButton.setBounds(240, 550, 90, 25);
 		contentPane.add(okButton);
 		
-		JButton cancelButton = new JButton("\u53D6\u6D88");
 		cancelButton.setBounds(600, 550, 90, 25);
 		contentPane.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
-				showlabelview.setLocation(CreateLabelView.this.getLocation());
-				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showlabelview.setVisible(true);
-				dispose();
-			}
-		});
 
 		JLabel createLabelType = new JLabel();
 		createLabelType.setFont(new Font("Monospaced", Font.PLAIN, 17));
@@ -82,17 +76,14 @@ public class CreateLabelView extends Frame {
 		createLabel2.setBounds(150, 130, 200, 25);
 		contentPane.add(createLabel2);
 
-		labelTypeEditorPane = new JEditorPane();
 		labelTypeEditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
 		labelTypeEditorPane.setBounds(340, 50, 190, 22);
 		contentPane.add(labelTypeEditorPane);
-
-		label1EditorPane = new JEditorPane();
+	
 		label1EditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
 		label1EditorPane.setBounds(340, 90, 190, 22);
 		contentPane.add(label1EditorPane);
 
-		label2EditorPane = new JEditorPane();
 		label2EditorPane.setFont(new Font("宋体", Font.PLAIN, 16));
 		label2EditorPane.setBounds(340, 130, 190, 22);
 		contentPane.add(label2EditorPane);

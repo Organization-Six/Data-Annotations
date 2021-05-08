@@ -48,43 +48,26 @@ public class PasteView extends Frame {
 	public static JComboBox labelTypeComboBox;
 	public static JPanel labelPane;
 	public static ButtonGroup labelTypeButtonGroup;
-	public static JButton okButton;
+	public static JButton okButton,cancelButton;
 	public static JTextArea commentTextPane;
 	public static JPanel labelTypePane;
 	
 	public PasteView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
 		super();
 		okButton = new JButton("\u786E\u5B9A");
+		cancelButton = new JButton("\u53D6\u6D88");
 		labelTypeButtonGroup=new ButtonGroup();
 		commentTextPane = new JTextArea();
 		labelTypePane = new JPanel();
 		labelPane = new JPanel();
 		controller = new PasteController(cmtBank,labBank,index,this);
 		
-		labelIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
-				showlabelview.setLocation(PasteView.this.getLocation());
-				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showlabelview.setVisible(true);
-				dispose();
-			}
-		});
+		
 		okButton.setBounds(250, 550, 90, 25);
 		contentPane.add(okButton);
 
-		JButton cancelButton = new JButton("\u53D6\u6D88");
 		cancelButton.setBounds(650, 550, 90, 25);
 		contentPane.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				IndexView indexview = new IndexView(cmtBank, labBank);
-				indexview.setLocation(PasteView.this.getLocation());
-				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				indexview.setVisible(true);
-				dispose();
-			}
-		});
 				
 		JScrollPane js=new JScrollPane(commentTextPane);
 		js.setBounds(30, 55,535, 450);

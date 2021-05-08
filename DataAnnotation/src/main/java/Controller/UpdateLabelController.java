@@ -42,7 +42,15 @@ public class UpdateLabelController {
 				view.dispose();
 			}
 		});
-		
+		UpdateLabelView.cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
+				showlabelview.setLocation(view.getLocation());
+				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				showlabelview.setVisible(true);
+				view.dispose();
+			}
+		});
 		UpdateLabelView.labelTypeEditorPane.setText(labBank.getLabel().get(row).getLabType());
 		
 		int n = labBank.getLabel().get(row).getLabChoise().size();

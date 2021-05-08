@@ -108,6 +108,7 @@ public class IndexView extends Frame {
 		list.setBounds(42, 100, 900, 136);	
 		list.setFixedCellWidth(list.getBounds().width);
 		list.setFixedCellHeight(40);
+		//±ß¿ò
 		list.setCellRenderer(new ListCellRenderer() {
 			public Component getListCellRendererComponent(JList arg0, Object arg1, int arg2, boolean arg3,
 					boolean arg4) {

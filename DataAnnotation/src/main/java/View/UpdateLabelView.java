@@ -56,15 +56,6 @@ public class UpdateLabelView extends Frame {
 
 		cancelButton.setBounds(600, 550, 90, 25);
 		contentPane.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
-				showlabelview.setLocation(UpdateLabelView.this.getLocation());
-				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showlabelview.setVisible(true);
-				dispose();
-			}
-		});
 		
 		JLabel updateLabelType = new JLabel();
 		updateLabelType.setBackground(UIManager.getColor("Button.background"));

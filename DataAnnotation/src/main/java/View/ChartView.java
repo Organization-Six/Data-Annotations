@@ -58,12 +58,13 @@ public class ChartView extends Frame {
 	private ChartController controller;
 	public static ChartPanel cp;
 	public static JComboBox<String> labelComboBox;
-	
+	public static JButton returnIndexButton;
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ChartView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
 		super();
-		labelComboBox = new JComboBox();		
-		controller = new ChartController(cmtBank,labBank,index);
+		labelComboBox = new JComboBox();	
+		returnIndexButton = new JButton("\u8FD4\u56DE\u4E3B\u9875");
+		controller = new ChartController(cmtBank,labBank,index,this);
 		
 		labelComboBox.setBackground(Color.WHITE);
 		labelComboBox.setFont(new Font("宋体", Font.PLAIN, 12));
@@ -75,18 +76,7 @@ public class ChartView extends Frame {
 		System.out.println(cp);
     	contentPane.add(cp);
 		
-		JButton returnIndexButton = new JButton("\u8FD4\u56DE\u4E3B\u9875");
 		returnIndexButton.setBounds(430, 550, 97, 25);
-		returnIndexButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// TODO 自动生成的方法存根
-				IndexView indexView = new IndexView(cmtBank, labBank);
-				indexView.setLocation(ChartView.this.getLocation());
-				indexView.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				indexView.setVisible(true);
-				dispose();	
-			}
-		});
 		contentPane.add(returnIndexButton);
 		
 //		chartPanel = new JPanel();
