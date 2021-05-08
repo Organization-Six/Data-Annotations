@@ -17,12 +17,12 @@ import javax.swing.JToolBar;
 import javax.swing.border.EmptyBorder;
 
 public class Frame extends JFrame {
-	protected JPanel contentPane;
-	protected JMenuItem importMenuItem;
-	protected JMenuItem exportMenuItem;
-	protected JMenuItem downloadMenuItem;
-	protected JButton labelIcon;
-	protected JButton chartIcon;
+	public static JPanel contentPane;
+	public static JMenuItem importMenuItem;
+	public static JMenuItem exportMenuItem;
+	public static JMenuItem downloadMenuItem;
+	public static JButton labelIcon;
+	public static JButton chartIcon;
 	
 	public Frame() {
 		setIconImage(new ImageIcon("src/main/resources/image/img_dataannotation.png").getImage());

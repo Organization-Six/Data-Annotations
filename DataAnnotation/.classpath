@@ -32,8 +32,6 @@
 	<classpathentry kind="con" path="org.testng.TESTNG_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/jgoodies-forms-1.8.0.jar"/>
 	<classpathentry kind="lib" path="lib/miglayout15-swing.jar"/>
-	<classpathentry kind="lib" path="D:/团队项目开发/Data Annotation/这是发git/Data-Annotations/DataAnnotation/src/main/resources"/>
-	<classpathentry kind="lib" path="D:/团队项目开发/Data Annotation/这是发git/Data-Annotations/DataAnnotation/lib/View.jar"/>
 	<classpathentry kind="lib" path="lib/animal-sniffer-annotations-1.14.jar"/>
 	<classpathentry kind="lib" path="lib/ant-1.10.3.jar"/>
 	<classpathentry kind="lib" path="lib/ant-launcher-1.10.3.jar"/>
@@ -76,5 +74,6 @@
 	<classpathentry kind="lib" path="lib/spring-core-5.1.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-expression-5.1.0.RELEASE.jar"/>
 	<classpathentry kind="lib" path="lib/spring-jcl-5.1.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="lib/View.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
