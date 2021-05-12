@@ -18,20 +18,20 @@ import  junit.framework.TestCase;
 
 import org.netbeans.jemmy.ComponentChooser;
 import org.netbeans.jemmy.Timeout;
-import  org.netbeans.jemmy.operators.JButtonOperator;
+import org.netbeans.jemmy.operators.JButtonOperator;
 import org.netbeans.jemmy.operators.JComboBoxOperator;
 import org.netbeans.jemmy.operators.JDialogOperator;
 import org.netbeans.jemmy.operators.JEditorPaneOperator;
-import  org.netbeans.jemmy.operators.JFrameOperator;
+import org.netbeans.jemmy.operators.JFrameOperator;
 import org.netbeans.jemmy.operators.JListOperator;
 import org.netbeans.jemmy.operators.JMenuBarOperator;
 import org.netbeans.jemmy.operators.JMenuOperator;
 import org.netbeans.jemmy.operators.JPopupMenuOperator;
 import org.netbeans.jemmy.operators.JRadioButtonOperator;
 import org.netbeans.jemmy.operators.JTableOperator;
-import  org.netbeans.jemmy.operators.JTextAreaOperator;
+import org.netbeans.jemmy.operators.JTextAreaOperator;
 import org.netbeans.jemmy.operators.JTextFieldOperator;
-import  org.netbeans.jemmy.operators.JMenuItemOperator;
+import org.netbeans.jemmy.operators.JMenuItemOperator;
 import org.netbeans.jemmy.util.NameComponentChooser;
 import org.netbeans.jemmy.drivers.buttons.*;
 
