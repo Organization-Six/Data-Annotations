@@ -1,4 +1,0 @@
-Manifest-Version: 1.0
-Main-Class: main.java.Main.Main
-Class-Path: lib/jgoodies-forms-1.8.0.jar lib/miglayout15-swing.jar lib/jgoodies-forms-1.8.0-sources.jar
-Created-By: maluko
