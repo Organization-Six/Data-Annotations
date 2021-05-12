@@ -120,7 +120,7 @@ public class ShowLabelController {
 	 		   } 
 	 		   @Override 
 	 		   public void mouseReleased(MouseEvent e) {
-	 			  if(e.isPopupTrigger()) {
+	 			  if(e.getButton() == MouseEvent.BUTTON3) {
 	 				 row = ShowLabelView.labelTable.getSelectedRow();
 	 				 System.out.println(row);
 	 				 if(row >= 0) {
