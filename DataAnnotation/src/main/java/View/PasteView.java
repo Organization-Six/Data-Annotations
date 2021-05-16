@@ -16,6 +16,9 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.JTextPane;
 import javax.swing.UIManager;
+
+import Controller.PasteController;
+
 import javax.swing.ButtonGroup;
 
 import java.awt.Color;
@@ -27,79 +30,45 @@ import javax.swing.SwingConstants;
 
 public class PasteView extends Frame {
 	
-	private ArrayList<String> typeList = new ArrayList<String>();
-	private String[] types;
-	
-	private ArrayList<String> choiceList = new ArrayList<String>();
-	private String[] labels;
-	
-	private LabelBank labBank;
-	private CommentBank cmtBank;
+//	private ArrayList<String> typeList = new ArrayList<String>();
+//	private String[] types;
+//	
+//	private ArrayList<String> choiceList = new ArrayList<String>();
+//	private String[] labels;
+//	
+//	private LabelBank labBank;
+//	private CommentBank cmtBank;
 	//private ArrayList<Label> labelList = new ArrayList<Label>();
 	//private ArrayList<Comment> cmtList = new ArrayList<Comment>();
-	String item;
-	JComboBox labelComboBox;
-	JComboBox labelTypeComboBox;
-	
-	JPanel labelPane;
-	
-	private final int index;
-	private Comment comment;
+//	String item;
+//	private final int index;
+//	private Comment comment;
+	private PasteController controller;
+	public static JComboBox labelComboBox;
+	public static JComboBox labelTypeComboBox;
+	public static JPanel labelPane;
+	public static ButtonGroup labelTypeButtonGroup;
+	public static JButton okButton,cancelButton;
+	public static JTextArea commentTextPane;
+	public static JPanel labelTypePane;
 	
 	public PasteView(final CommentBank cmtBank, final LabelBank labBank, final int index) {
 		super();
-		this.labBank = labBank;
-		this.cmtBank = cmtBank;
-		this.index = index;
+		okButton = new JButton("\u786E\u5B9A");
+		cancelButton = new JButton("\u53D6\u6D88");
+		labelTypeButtonGroup=new ButtonGroup();
+		commentTextPane = new JTextArea();
+		labelTypePane = new JPanel();
+		labelPane = new JPanel();
+		controller = new PasteController(cmtBank,labBank,index,this);
 		
-		initData();
 		
-		labelIcon.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
-				showlabelview.setLocation(PasteView.this.getLocation());
-				showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				showlabelview.setVisible(true);
-				dispose();
-			}
-		});
-
-
-		JButton okButton = new JButton("\u786E\u5B9A");
 		okButton.setBounds(250, 550, 90, 25);
 		contentPane.add(okButton);
-		okButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(comment.isCmtIsMark()) {
-					comment.getLabelList().add(item);
-				}
-				else {
-					comment.setCmtIsMark(true);
-					comment.setLabelList(new ArrayList<String>(Arrays.asList(item)));
-				}
-				IndexView indexview = new IndexView(cmtBank, labBank);
-				indexview.setLocation(PasteView.this.getLocation());
-				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				indexview.setVisible(true);
-				dispose();
-			}
-		});
 
-		JButton cancelButton = new JButton("\u53D6\u6D88");
 		cancelButton.setBounds(650, 550, 90, 25);
 		contentPane.add(cancelButton);
-		cancelButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				IndexView indexview = new IndexView(cmtBank, labBank);
-				indexview.setLocation(PasteView.this.getLocation());
-				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				indexview.setVisible(true);
-				dispose();
-			}
-		});
-		
-
-		JTextArea commentTextPane = new JTextArea();
+				
 		JScrollPane js=new JScrollPane(commentTextPane);
 		js.setBounds(30, 55,535, 450);
 		js.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -107,7 +76,6 @@ public class PasteView extends Frame {
 		commentTextPane.setFont(new Font("宋体", Font.PLAIN, 20));
 		commentTextPane.setOpaque(true); 
 		commentTextPane.setBackground(Color.WHITE);
-		commentTextPane.setText(comment.getCmtWriter()+" "+comment.getCmtTime()+" "+comment.getCmtText());
 		commentTextPane.setBounds(30, 55, 520, 450);
 		commentTextPane.setDisabledTextColor(Color.BLACK);
 		commentTextPane.setLineWrap(true);
@@ -129,22 +97,10 @@ public class PasteView extends Frame {
 		labelLabel.setBounds(575, 350, 90, 25);
 		contentPane.add(labelLabel);
 		
-		JPanel labelTypePane = new JPanel();
 		labelTypePane.setBounds(580, 100, 375, 240);
 		labelTypePane.setLayout(null);
 		getContentPane().add(labelTypePane);
-		
-		ButtonGroup labelTypeButtonGroup=new ButtonGroup();
-		for(int i = 0; i < types.length; i++) {
-			JRadioButton labelType = new JRadioButton(types[i]);
-			labelType.setBounds(5,10+20*i,100,20);
-			labelType.setFont(new Font("瀹嬩綋", Font.PLAIN, 14));
-			labelType.addActionListener(new LabelTypeListener());
-			labelTypePane.add(labelType);
-			labelTypeButtonGroup.add(labelType);
-		}
-		
-		labelPane = new JPanel();
+
 		labelPane.setBounds(580, 380, 375, 124);
 		labelPane.setLayout(null);
 		getContentPane().add(labelPane);
@@ -184,60 +140,5 @@ public class PasteView extends Frame {
 //			}
 //		});
 //		contentPane.add(labelComboBox);
-	}
-	
-	private void initData() {
-		comment = cmtBank.getComment().get(index);
-		
-		typeList.add(" ");
-		choiceList.add(" ");
-		for(int i = 0; i < labBank.getLabel().size(); i++) {
-			Label label = labBank.getLabel().get(i);
-			typeList.add(label.getLabType());
-		}
-
-		
-		//lablist.addAll(label1.getLabChoise());
-		//lablist.addAll(label2.getLabChoise());
-		
-		types = (String[]) typeList.toArray(new String[0]); 
-		labels = (String[]) choiceList.toArray(new String[0]); 
-	}
-	
-	private void labelRefresh() {
-		labelPane.removeAll();
-		ButtonGroup labelButtonGroup=new ButtonGroup();		
-		for(int i = 0; i < labels.length; i++) {
-			JRadioButton labelRb=new JRadioButton(labels[i]);			
-			labelRb.setBounds(5+i%3*125,i/3*20,120,20);
-			labelRb.setFont(new Font("瀹嬩綋", Font.PLAIN, 14));
-			labelRb.addActionListener(new LabelListener());		
-			labelPane.add(labelRb);
-			labelButtonGroup.add(labelRb);
-		}	
-		labelPane.repaint();
-	}
-	
-	class LabelTypeListener implements ActionListener{
-		public void actionPerformed(ActionEvent e){//if (e.getSource() ==button1)
-			String type=e.getActionCommand();
-			for(int i = 0; i < labBank.getLabel().size(); i++) {
-				if(labBank.getLabel().get(i).getLabType().equals(type)) {
-					choiceList.clear();
-					choiceList.add(" ");
-					choiceList.addAll(labBank.getLabel().get(i).getLabChoise());
-					labels = (String[]) choiceList.toArray(new String[0]);
-					labelRefresh();				
-				}
-			}
-		}
-	}
-	
-	class LabelListener implements ActionListener{
-		public void actionPerformed(ActionEvent e) {
-			// TODO 鑷姩鐢熸垚鐨勬柟娉曞瓨鏍�
-			item = e.getActionCommand();
-//			System.out.println("閫変簡"+item);
-		}		
 	}
 }
