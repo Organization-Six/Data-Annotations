@@ -9,11 +9,15 @@ import java.net.URL;
 import java.security.PublicKey;
 import java.util.ArrayList;
 import org.apache.http.conn.ConnectTimeoutException;
+import org.springframework.stereotype.Component;
+
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
+@Component
 public class Spider {
 	
+	@LogAnnotation(className = "Model.Spider" , content = "Spider : load() trycatch")
 	private static ArrayList<Data> load(String id) throws IOException{
 		
 		ArrayList<Data> dataArray = new ArrayList<Data>();
@@ -51,6 +55,7 @@ public class Spider {
 	**
 	**@param url 爬取的网址
 	*/
+	@LogAnnotation(className = "Model.Spider" , content = "Spider : request() trycatch")
 	private static String request(String url) throws IOException{
 		String result = "";
 		
@@ -148,6 +153,7 @@ public class Spider {
 	//输入错误的股票id但不含错误符号，网站会处理并返回200但是是空的json信息。这个问题还没处理。
 	
 	//已改
+	@LogAnnotation(className = "Model.Spider" , content = "Spider : Load() trycatch")
 	public static ArrayList<Data> Load(String id) {
 		
 		try {
@@ -213,6 +219,7 @@ public class Spider {
 	 * @return Name = new
 	 * String(Name.getBytes("ISO-8859-1"), "utf-8");
 	 */
+	@LogAnnotation(className = "Model.Spider" , content = "Spider : toUTF8 trycatch")
 	public static String toUTF8(String str) {
 		if (isEmpty(str)) {
 			return "";

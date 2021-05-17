@@ -18,7 +18,6 @@ import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
-
 public class Chart {
 	ChartPanel frame1;
 	String title;
@@ -52,6 +51,7 @@ public class Chart {
 	      piePlot.setLabelFont(new Font("宋体",Font.BOLD,10));//解决乱码
 	      chart.getLegend().setItemFont(new Font("黑体",Font.BOLD,10));
 	}
+	
     private static DefaultPieDataset getDataSet(ArrayList<Percent> percent) {
         DefaultPieDataset dataset = new DefaultPieDataset();
         for(Percent per: percent) {

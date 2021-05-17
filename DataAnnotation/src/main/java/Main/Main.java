@@ -7,15 +7,19 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import org.springframework.stereotype.Component;
+
 import Model.Chart;
 import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import Model.Spider;
 import View.IndexView;
 //import View.LoginView;
 
+@Component
 public class Main {
 
 	public static void main(String[] args) {
@@ -30,6 +34,7 @@ public class Main {
 		final CommentBank cmtBank = new CommentBank();
 		final LabelBank labBank = new LabelBank();
 		EventQueue.invokeLater(new Runnable() {
+			@LogAnnotation(className = "Main.Main" , content = "Main trycatch")
 			public void run() {
 				try {
 					//cmtBank.getComment().add(new Comment("无数据"," "," "));

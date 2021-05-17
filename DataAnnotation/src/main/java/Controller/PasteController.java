@@ -10,14 +10,18 @@ import javax.swing.ButtonGroup;
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
 
+import org.springframework.stereotype.Component;
+
 import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import View.IndexView;
 import View.PasteView;
 import View.ShowLabelView;
 
+@Component
 public class PasteController {
 	private ArrayList<String> typeList = new ArrayList<String>();
 	private String[] types;
@@ -48,6 +52,7 @@ public class PasteController {
 			}
 		});		
 		PasteView.okButton.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.PasteController" , content = "paste label to comment")
 			public void actionPerformed(ActionEvent e) {
 				if(comment.isCmtIsMark()) {
 					comment.getLabelList().add(item);
@@ -114,7 +119,9 @@ public class PasteController {
 		PasteView.labelPane.repaint();
 	}
 	
+	@Component
 	class LabelTypeListener implements ActionListener{
+		@LogAnnotation(className = "Controller.PasteController" , content = "update choiceList")
 		public void actionPerformed(ActionEvent e){//if (e.getSource() ==button1)
 			String type=e.getActionCommand();
 			for(int i = 0; i < labBank.getLabel().size(); i++) {

@@ -14,10 +14,13 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
+import org.springframework.stereotype.Component;
+
 import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import Model.Spider;
 import Model.Spider.Data;
 import View.ChartView;
@@ -26,6 +29,7 @@ import View.PasteView;
 import View.ShowLabelView;
 import View.dialog.DownLoadDialog;
 
+@Component
 public class IndexController {
 	private CommentBank cmtBank;	
 	private LabelBank labBank;
@@ -50,6 +54,7 @@ public class IndexController {
 			}		
 		});	
 		IndexView.jm2.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.IndexController" , content = "remove comment")
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //删除项响应		
@@ -62,6 +67,7 @@ public class IndexController {
 			}		
 		});	
 		IndexView.importMenuItem.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.IndexController" , content = "import comment")
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根	
 
@@ -89,6 +95,7 @@ public class IndexController {
 		});
 		
 		IndexView.exportMenuItem.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.IndexController" , content = "export comment")
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //				JFileChooser saveFileChooser = new JFileChooser();
@@ -119,6 +126,7 @@ public class IndexController {
 		});
 		
 		IndexView.downloadMenuItem.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.IndexController" , content = "download comment")
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 				String exportStockID = null;
@@ -179,6 +187,7 @@ public class IndexController {
 		IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
 		IndexView.labelComboBox.addItemListener(new ItemListener() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
+			@LogAnnotation(className = "Controller.IndexController" , content = "update labelComboBox")
 			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					String item = (String) e.getItem();

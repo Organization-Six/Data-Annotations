@@ -9,11 +9,15 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
+import org.springframework.stereotype.Component;
+
 import Model.CommentBank;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import View.ShowLabelView;
 import View.UpdateLabelView;
 
+@Component
 public class UpdateLabelController {
 	private CommentBank cmtBank;
 	private LabelBank labBank;
@@ -28,6 +32,7 @@ public class UpdateLabelController {
 		this.row = row;
 		
 		UpdateLabelView.okButton.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.UpdateLabelController" , content = "update label")
 			public void actionPerformed(ActionEvent e) {
 				labBank.getLabel().get(row).setLabType(UpdateLabelView.labelTypeEditorPane.getText());
 				labBank.getLabel().get(row).getLabChoise().clear();

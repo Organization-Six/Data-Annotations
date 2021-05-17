@@ -10,12 +10,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 
+import org.springframework.stereotype.Component;
+
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import View.CreateLabelView;
 import View.ShowLabelView;
 
+@Component
 public class CreateLabelController {
 	private CommentBank cmtBank;
 	private LabelBank labBank;
@@ -32,6 +36,7 @@ public class CreateLabelController {
 		this.index = index;
 		
 		CreateLabelView.okButton.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.CreateLabelController" , content = "create Label")
 			public void actionPerformed(ActionEvent e) {
 				ArrayList<String> choiceList = new ArrayList<String>();
 				choiceList.add(CreateLabelView.label1EditorPane.getText());

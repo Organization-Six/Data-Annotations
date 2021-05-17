@@ -7,6 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class CommentBank {
 	private ArrayList<Comment> commentList = new ArrayList<Comment>();
     private final String COMMENT_FILE_NAME = "comment.txt";
@@ -21,6 +24,7 @@ public class CommentBank {
     	this.commentList = (ArrayList<Comment>) cmtList.clone();
     }
 
+    @LogAnnotation(className = "Model.CommentBank" , content = "CommentBank : Save() trycatch")
     public void Save() {
         ObjectOutputStream oos = null;
         try {
@@ -33,6 +37,7 @@ public class CommentBank {
         }
     }
 
+    @LogAnnotation(className = "Model.CommentBank" , content = "CommentBank : Load() trycatch")
     public void Load() {
         ObjectInputStream ois = null;
         commentList = new ArrayList<Comment>();

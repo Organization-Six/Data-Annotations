@@ -9,14 +9,18 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 
+import org.springframework.stereotype.Component;
+
 import Model.Chart;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import Model.Percent;
 import View.ChartView;
 import View.IndexView;
 
+@Component
 public class ChartController {
 	private ArrayList<String> choiceList = new ArrayList<String>();
 	private ArrayList<Percent> percent = new ArrayList<Percent>();
@@ -45,6 +49,7 @@ public class ChartController {
 		ChartView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
 		ChartView.labelComboBox.addItemListener(new ItemListener() {
 			@SuppressWarnings("unchecked")
+			@LogAnnotation(className = "Controller.ChartController" , content = "update chart")
 			public void itemStateChanged(ItemEvent e){
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					String type = (String) e.getItem();

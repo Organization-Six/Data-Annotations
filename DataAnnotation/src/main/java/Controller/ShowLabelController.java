@@ -8,8 +8,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
+import org.springframework.stereotype.Component;
+
 import Model.CommentBank;
 import Model.LabelBank;
+import Model.LogAnnotation;
 import View.ChartView;
 import View.CreateLabelView;
 import View.IndexView;
@@ -17,6 +20,7 @@ import View.PasteView;
 import View.ShowLabelView;
 import View.UpdateLabelView;
 
+@Component
 public class ShowLabelController {
 	private CommentBank cmtBank;
 	private LabelBank labBank;
@@ -93,6 +97,7 @@ public class ShowLabelController {
 			}		
 		});	
 		ShowLabelView.jm2.addActionListener(new ActionListener() {
+			@LogAnnotation(className = "Controller.ShowLabelController" , content = "remove label")
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //删除项响应		

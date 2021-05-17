@@ -7,6 +7,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LabelBank {
 	private ArrayList<Label> labelList = new ArrayList<Label>();
     private final String LABEL_FILE_NAME = "label.txt";
@@ -20,6 +23,7 @@ public class LabelBank {
         this.labelList = labList;
     }
     
+    @LogAnnotation(className = "Model.LabelBank" , content = "LabelBank : Save() trycatch")
     public void Save() {
         ObjectOutputStream oos = null;
         try {
@@ -32,6 +36,7 @@ public class LabelBank {
         }
     }
 
+    @LogAnnotation(className = "Model.LabelBank" , content = "LabelBank : Load() trycatch")
     public void Load() {
         ObjectInputStream ois = null;
         labelList = new ArrayList<Label>();
