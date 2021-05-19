@@ -112,6 +112,9 @@ public class UITest extends TestCase{
 		 new Timeout("pausing",1000).sleep();
 		 btnFinOKOpr.clickMouse();
 		 
+		 assertNotEquals("无数据",listOpr.getModel().getElementAt(0));
+		 assertTrue(listOpr.getModel().getElementAt(0).toString().contains("洋河股份"));
+		 
 		 JButtonOperator btnLabelOpr = new JButtonOperator(frmOpr, 2);
 		 new Timeout("pausing",1000).sleep();
 		 btnLabelOpr.clickMouse();
@@ -183,6 +186,10 @@ public class UITest extends TestCase{
                  return "JViewChooserOperator.getView.ComponentChooser{description = " + getDescription() + '}';
              }
          }));
+		 JTableOperator labelTableTestOpr1 = new JTableOperator(showLabelViewOpr2);
+		 assertEquals("评价", labelTableTestOpr1.getValueAt(0,0));
+		 assertEquals("好评,差评,", labelTableTestOpr1.getValueAt(0,1));
+		 
 		 JButtonOperator btnAddLabelOpr2 = new JButtonOperator(showLabelViewOpr2, "+自定义标签");
 		 new Timeout("pausing",1000).sleep();
 		 btnAddLabelOpr2.clickMouse();
@@ -232,7 +239,12 @@ public class UITest extends TestCase{
                  return "JViewChooserOperator.getView.ComponentChooser{description = " + getDescription() + '}';
              }
          }));
+		 
 		 JTableOperator labelTableOpr = new JTableOperator(showLabelViewOpr3);
+		 
+		 assertEquals("广告", labelTableOpr.getValueAt(1,0));
+		 assertEquals("是,否,", labelTableOpr.getValueAt(1,1));
+		 
 		 Point p = labelTableOpr.getPointToClick(1, 1);
 		 labelTableOpr.clickMouse(p.x, p.y, 1, InputEvent.BUTTON1_MASK);
 		 new Timeout("pausing",1000).sleep();
@@ -286,6 +298,9 @@ public class UITest extends TestCase{
              }
          }));
 		 JTableOperator labelTableOpr2 = new JTableOperator(showLabelViewOpr4);
+		 
+		 assertEquals("是否广告", labelTableOpr2.getValueAt(1,0));
+		 
 		 Point p2 = labelTableOpr2.getPointToClick(1, 1);
 		 labelTableOpr2.clickMouse(p2.x, p2.y, 1, InputEvent.BUTTON1_MASK);
 		 new Timeout("pausing",1000).sleep();
@@ -314,6 +329,10 @@ public class UITest extends TestCase{
                  return "JViewChooserOperator.getView.ComponentChooser{description = " + getDescription() + '}';
              }
          }));
+		 
+		 JTableOperator labelTableTestOpr2 = new JTableOperator(showLabelViewOpr5);		 
+		 assertEquals(1,labelTableTestOpr2.getRowCount());
+		 
 		 JButtonOperator btnLabelOKOpr = new JButtonOperator(showLabelViewOpr5, "确定");
 		 btnLabelOKOpr.clickMouse();
 		 
@@ -352,6 +371,10 @@ public class UITest extends TestCase{
                  return "JFileChooserOperator.getFileList.ComponentChooser{description = " + getDescription() + '}';
              }
          });
+		 
+		 //int oldCount = listOpr2.getL();
+		 //System.out.println("oC:"+oldCount);
+		 
 		 new Timeout("pausing",1000).sleep();
 		 Point p3 = listOpr2.getClickPoint(0);
 		 listOpr2.clickForPopup(p3.x, p3.y, InputEvent.BUTTON3_MASK);
@@ -361,6 +384,8 @@ public class UITest extends TestCase{
 		 new Timeout("pausing",1000).sleep();
 		 deleteCommentOpr.clickMouse();
 		 new Timeout("pausing",1000).sleep();
+		 
+		 //assertEquals(oldCount-1, listOpr2.getVisibleRowCount());
 		 
 		 Point comment1 = listOpr2.getClickPoint(0);
 		 listOpr2.clickForPopup(comment1.x, comment1.y, InputEvent.BUTTON3_MASK);
@@ -580,7 +605,12 @@ public class UITest extends TestCase{
                  return "JViewChooserOperator.getView.ComponentChooser{description = " + getDescription() + '}';
              }
          }));
+		 
 		 JComboBoxOperator comboBoxOpr = new JComboBoxOperator(indexViewOpr4);
+		 
+		 assertEquals("好评", comboBoxOpr.getItemAt(2).toString());
+
+		 
 		 comboBoxOpr.clickMouse();
 		 new Timeout("pausing",1000).sleep();
 		 comboBoxOpr.setSelectedIndex(2);
@@ -589,6 +619,8 @@ public class UITest extends TestCase{
 		 new Timeout("pausing",1000).sleep();
 		 JButtonOperator btnChartOpr = new JButtonOperator(indexViewOpr4, 3);
 		 btnChartOpr.clickMouse();
+		 
+		 
 		 
 		 
 		 JFrameOperator chartViewOpr = new JFrameOperator(JFrameOperator.findJFrame(new ComponentChooser() {
@@ -635,6 +667,25 @@ public class UITest extends TestCase{
                  return "JViewChooserOperator.getView.ComponentChooser{description = " + getDescription() + '}';
              }
          }));
+		 
+		 JListOperator listOprTest2 = new JListOperator(indexViewOpr5, new ComponentChooser() {
+             //@Override
+             public boolean checkComponent(Component comp) {
+                 return (comp != null
+                         && comp instanceof JList);
+             }
+
+             //@Override
+             public String getDescription() {
+                 return "JList";
+             }
+
+             @Override
+             public String toString() {
+                 return "JFileChooserOperator.getFileList.ComponentChooser{description = " + getDescription() + '}';
+             }
+         });
+		 
 		 JMenuBarOperator menuOpr2 = new JMenuBarOperator(indexViewOpr5);
 		 JMenuOperator fileMenuOpr2 = new JMenuOperator(menuOpr2.getMenu(0));
 		 fileMenuOpr2.clickMouse();
@@ -646,6 +697,9 @@ public class UITest extends TestCase{
 		 new Timeout("pausing",1000).sleep();
 		 btnFinOKOpr2.clickMouse();
 		 
+		 assertEquals("无数据",listOprTest2.getModel().getElementAt(0).toString());
+		 //assertTrue(listOprTest2.getModel().getElementAt(0).toString().contains("洋河股份"));
+		 
 		 
 		 new Timeout("pausing",1000).sleep();
 		 fileMenuOpr2.clickMouse();
@@ -656,6 +710,9 @@ public class UITest extends TestCase{
 		 JButtonOperator btnFinOKOpr3 = new JButtonOperator(importFinOpr, "确定");
 		 new Timeout("pausing",1000).sleep();
 		 btnFinOKOpr3.clickMouse();
+		 
+		 assertNotEquals("无数据",listOprTest2.getModel().getElementAt(0));
+		 assertTrue(listOprTest2.getModel().getElementAt(0).toString().contains("洋河股份"));
 		 
 		 JComboBoxOperator newComboBoxOpr = new JComboBoxOperator(indexViewOpr5);
 		 newComboBoxOpr.clickMouse();
