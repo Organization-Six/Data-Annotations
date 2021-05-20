@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="DESKTOP-NQR5E96" name="Test.LoginTest" skipped="0" tests="1" time="0.249" timestamp="2021-04-28T07:44:18">
+  <properties>
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="env.PROMPT" value="$P$G" />
+    <property name="env.CUDA_PATH_V10_0" value="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0" />
+    <property name="java.home" value="C:\Program Files\Java\jdk1.8.0_211\jre" />
+    <property name="env.OneDriveConsumer" value="C:\Users\www91\OneDrive" />
+    <property name="env.NODIST_IOJS_MIRROR" value="https://npm.taobao.org/mirrors/iojs" />
+    <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_211\jre\lib\endorsed" />
+    <property name="env.USERNAME" value="www91" />
+    <property name="debuglevel" value="source,lines,vars" />
+    <property name="env.NVCUDASAMPLES10_0_ROOT" value="C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.0" />
+    <property name="ECLIPSE_HOME" value="../../../../../JAVA/eclipse-java-2019-12-R-win32-x86_64/eclipse/" />
+    <property name="env.PyCharm" value="D:\python\pycharm\pycharm-2019.3.3【中文版】\pycharm-2019.3.3【中文版】\主程序\PyCharm 2019.3.3\bin;" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="env.COMPUTERNAME" value="DESKTOP-NQR5E96" />
+    <property name="env.ProgramFiles(x86)" value="C:\Program Files (x86)" />
+    <property name="java.version" value="1.8.0_211" />
+    <property name="eclipse.pdebuild.home" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.eclipse.pde.build_3.10.1000.v20210130-0813\." />
+    <property name="env.FPS_BROWSER_APP_PROFILE_STRING" value="Internet Explorer" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="env.USERPROFILE" value="C:\Users\www91" />
+    <property name="ant.project.invoked-targets" value="build,junitreport,LoginTest" />
+    <property name="env.SystemRoot" value="C:\WINDOWS" />
+    <property name="env.CUDA_PATH" value="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0" />
+    <property name="user.name" value="www91" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="sun.jnu.encoding" value="GBK" />
+    <property name="env.SCALA_HOME" value="D:\腾讯大数据\scala-2.13.5" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="env.LOCALAPPDATA" value="C:\Users\www91\AppData\Local" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="user.timezone" value="" />
+    <property name="user.script" value="" />
+    <property name="path.separator" value=";" />
+    <property name="env.PROCESSOR_IDENTIFIER" value="Intel64 Family 6 Model 158 Stepping 10, GenuineIntel" />
+    <property name="env.NODIST_NODE_MIRROR" value="https://npm.taobao.org/mirrors/node" />
+    <property name="file.encoding" value="GBK" />
+    <property name="ant.project.default-target" value="build" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Test.LoginTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.OutErrSummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\TestReport\TEST-Test.LoginTest.xml crashfile=D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\junitvmwatcher4664192260527713817.properties propsfile=D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\junit7681610472891719759.properties" />
+    <property name="env.IntelliJ IDEA Community Edition" value="D:\Android\idea\IntelliJ IDEA Community Edition 2020.2\bin;" />
+    <property name="env.NUMBER_OF_PROCESSORS" value="8" />
+    <property name="env.NVMW_IOJS_ORG_MIRROR" value="https://npm.taobao.org/mirrors/iojs" />
+    <property name="env.APPDATA" value="C:\Users\www91\AppData\Roaming" />
+    <property name="ant.file" value="D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\build.xml" />
+    <property name="env.NVM_NODEJS_ORG_MIRROR" value="https://npm.taobao.org/mirrors/node" />
+    <property name="java.io.tmpdir" value="C:\Users\www91\AppData\Local\Temp\" />
+    <property name="user.language" value="zh" />
+    <property name="env.SystemDrive" value="C:" />
+    <property name="org.apache.tools.ant.taskdefs.optional.junit.AggregateTransformer0" value="C:\Users\www91\AppData\Local\Temp\null1581478932" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="target" value="1.5" />
+    <property name="env.PT7HOME" value="D:\计算机网络\csico\Cisco Packet Tracer 7.3.1" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="source" value="1.5" />
+    <property name="env.NVTOOLSEXT_PATH" value="C:\Program Files\NVIDIA Corporation\NvToolsExt\" />
+    <property name="env.HADOOP_HOME" value="D:\腾讯大数据\Hadoop\hadoop-2.7.5" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="env.PATHEXT" value=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC" />
+    <property name="env.NODEJS_ORG_MIRROR" value="https://npm.taobao.org/mirrors/node" />
+    <property name="env.USERDOMAIN_ROAMINGPROFILE" value="DESKTOP-NQR5E96" />
+    <property name="env.envContainerTelemetryApiCmdLine" value="-st &quot;C:\Program Files\NVIDIA Corporation\NvContainer\NvContainerTelemetryApi.dll&quot;" />
+    <property name="env.LOGONSERVER" value="\\DESKTOP-NQR5E96" />
+    <property name="eclipse.pdebuild.templates" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.eclipse.pde.build_3.10.1000.v20210130-0813\templates" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="env.NVM_IOJS_ORG_MIRROR" value="https://npm.taobao.org/mirrors/iojs" />
+    <property name="env.PUBLIC" value="C:\Users\Public" />
+    <property name="env.IOJS_ORG_MIRROR" value="https://npm.taobao.org/mirrors/iojs" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.10.9 compiled on September 27 2020" />
+    <property name="env.USERDOMAIN" value="DESKTOP-NQR5E96" />
+    <property name="env.NVMW_NODEJS_ORG_MIRROR" value="https://npm.taobao.org/mirrors/node" />
+    <property name="env.VBOX_MSI_INSTALL_PATH" value="D:\Program Files (x86)\VirtualBox\" />
+    <property name="env.PROCESSOR_LEVEL" value="6" />
+    <property name="env.windir" value="C:\WINDOWS" />
+    <property name="env.CommonProgramFiles(x86)" value="C:\Program Files (x86)\Common Files" />
+    <property name="env.CLASSPATH" value=".;D:\JAVA\Java\lib;D:\JAVA\Java\lib\dt.jar;D:\JAVA\Java\lib\tools.jar" />
+    <property name="os.name" value="Windows 10" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="env.TMP" value="C:\Users\www91\AppData\Local\Temp" />
+    <property name="env.include" value="d:\Program Files (x86)\atl\include;d:\Program Files (x86)\mfc\include;d:\Program Files (x86)\include" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="env.ProgramData" value="C:\ProgramData" />
+    <property name="env.OS" value="Windows_NT" />
+    <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_211\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:/JAVA/Java/bin/server;D:/JAVA/Java/bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\微信小程序\nodejs\;C:\P;ogram Files\MySQL\MySQL Server 5.7\bin;D:\Android\Git\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\extras\CUPTI\libx64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include;C:\Program Files\cuda\bin;C:\Program Files\NVIDIA Corporation\NVSMI;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin\cudart64_100.dll;C:\Program Files\dotnet\;D:\MATLAB\MATLAB2018\runtime\win64;D:\MATLAB\MATLAB2018\bin;D:\7-zip\7z.exe;C:\Windows\7z.exe;D:\Kuai8Games\Games\dipingxian\HF4\AppxManifest.xml;D:\Kuai8Games\Games\dipingxian\FH4_FortuneIsland\AppxManifest.xml;D:\Kuai8Games\Games\dipingxian\FH4_Lego\AppxManifest.xml;D:\腾讯大数据\Ant\apache-ant-1.9.4\bin;D:\腾讯大数据\Hadoop\hadoop-2.7.5\bin;D:\腾讯大数据\spark-3.1.1-bin-hadoop2.7\bin;D:\腾讯大数据\spark-3.1.1-bin-hadoop2.7\sbin;D:\腾讯大数据\scala-2.13.5\bin;D:\python\code\functionproject\解压\res\x64;D:\JAVA\Java\bin;D:\JAVA\Java\jre\bin;D:\JAVA\Java\\lib;D:\python3.7\Scripts\;D:\python3.7\;D:\python\Scripts\;D:\python\;D:\Program Files (x86)\Tools\WinNT;D:\Program Files (x86)\MSDev98\Bin;D:\Program Files (x86)\Tools;C:\Program Files (x86)\Microsoft Visual Studio\Common\Tools\WinNT;C:\Program Files (x86)\Microsoft Visual Studio\Common\MSDev98\Bin;C:\Program Files (x86)\Microsoft Visual Studio\Common\Tools;d:\Program Files (x86)\bin;C:\Users\www91\AppData\Local\Microsoft\WindowsApps;C:\Users\www91\AppData\Roaming\npm;D:\python\pycharm\pycharm-2019.3.3【中文版】\pycharm-2019.3.3【中文版】\主程序\PyCharm 2019.3.3\bin;;D:\Android\idea\IntelliJ IDEA Community Edition 2020.2\bin;;D:\databaseMySQL\MySQL\mysql-8.0.21-winx64\mysql-8.0.21\bin;D:\ffmpy\ffmpeg-2020-11-04-git-cfdddec0c8-full_build\bin;C:\Users\www91\.dotnet\tools;;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse;;." />
+    <property name="eclipse.pdebuild.scripts" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.eclipse.pde.build_3.10.1000.v20210130-0813\scripts" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="basedir" value="D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation" />
+    <property name="java.class.version" value="52.0" />
+    <property name="ant.home" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946" />
+    <property name="env.Path" value="D:/JAVA/Java/bin/server;D:/JAVA/Java/bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\libnvvp;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\iCLS\;C:\Program Files\Intel\Intel(R) Management Engine Components\iCLS\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\微信小程序\nodejs\;C:\P;ogram Files\MySQL\MySQL Server 5.7\bin;D:\Android\Git\Git\cmd;C:\Program Files\TortoiseGit\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\extras\CUPTI\libx64;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\include;C:\Program Files\cuda\bin;C:\Program Files\NVIDIA Corporation\NVSMI;C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0\bin\cudart64_100.dll;C:\Program Files\dotnet\;D:\MATLAB\MATLAB2018\runtime\win64;D:\MATLAB\MATLAB2018\bin;D:\7-zip\7z.exe;C:\Windows\7z.exe;D:\Kuai8Games\Games\dipingxian\HF4\AppxManifest.xml;D:\Kuai8Games\Games\dipingxian\FH4_FortuneIsland\AppxManifest.xml;D:\Kuai8Games\Games\dipingxian\FH4_Lego\AppxManifest.xml;D:\腾讯大数据\Ant\apache-ant-1.9.4\bin;D:\腾讯大数据\Hadoop\hadoop-2.7.5\bin;D:\腾讯大数据\spark-3.1.1-bin-hadoop2.7\bin;D:\腾讯大数据\spark-3.1.1-bin-hadoop2.7\sbin;D:\腾讯大数据\scala-2.13.5\bin;D:\python\code\functionproject\解压\res\x64;D:\JAVA\Java\bin;D:\JAVA\Java\jre\bin;D:\JAVA\Java\\lib;D:\python3.7\Scripts\;D:\python3.7\;D:\python\Scripts\;D:\python\;D:\Program Files (x86)\Tools\WinNT;D:\Program Files (x86)\MSDev98\Bin;D:\Program Files (x86)\Tools;C:\Program Files (x86)\Microsoft Visual Studio\Common\Tools\WinNT;C:\Program Files (x86)\Microsoft Visual Studio\Common\MSDev98\Bin;C:\Program Files (x86)\Microsoft Visual Studio\Common\Tools;d:\Program Files (x86)\bin;C:\Users\www91\AppData\Local\Microsoft\WindowsApps;C:\Users\www91\AppData\Roaming\npm;D:\python\pycharm\pycharm-2019.3.3【中文版】\pycharm-2019.3.3【中文版】\主程序\PyCharm 2019.3.3\bin;;D:\Android\idea\IntelliJ IDEA Community Edition 2020.2\bin;;D:\databaseMySQL\MySQL\mysql-8.0.21-winx64\mysql-8.0.21\bin;D:\ffmpy\ffmpeg-2020-11-04-git-cfdddec0c8-full_build\bin;C:\Users\www91\.dotnet\tools;;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse;" />
+    <property name="env.UNRAR_LIB_PATH" value="D:\python\code\functionproject\解压\res\x64\UnRAR64.dll" />
+    <property name="env.HOMEDRIVE" value="C:" />
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_211\jre\bin" />
+    <property name="env.PROCESSOR_REVISION" value="9e0a" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="user.variant" value="" />
+    <property name="env.JAVA14_HOME" value="D:\JAVA\Java" />
+    <property name="ant.project.name" value="dataannotation" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="env.envContainerTelemetryApiCmdLineX86" value="-st &quot;C:\Program Files (x86)\NVIDIA Corporation\NvContainer\NvContainerTelemetryApi.dll&quot;" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="ant.file.type.dataannotation" value="file" />
+    <property name="java.ext.dirs" value="C:\Program Files\Java\jdk1.8.0_211\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
+    <property name="os.version" value="10.0" />
+    <property name="env.NVMW_NPM_MIRROR" value="https://npm.taobao.org/mirrors/npm" />
+    <property name="user.home" value="C:\Users\www91" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="env.DriverData" value="C:\Windows\System32\Drivers\DriverData" />
+    <property name="env.CommonProgramW6432" value="C:\Program Files\Common Files" />
+    <property name="env.JAVA_HOME" value="D:\JAVA\Java" />
+    <property name="env.ProgramW6432" value="C:\Program Files" />
+    <property name="junit.output.dir" value="TestReport" />
+    <property name="env.MSDevDir" value="D:\Program Files (x86)\MSDev98;C:\Program Files (x86)\Microsoft Visual Studio\Common\MSDev98" />
+    <property name="user.dir" value="D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation" />
+    <property name="ant.file.dataannotation" value="D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\build.xml" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="env.ALLUSERSPROFILE" value="C:\ProgramData" />
+    <property name="env.PROCESSOR_ARCHITECTURE" value="AMD64" />
+    <property name="java.vm.version" value="25.211-b12" />
+    <property name="env.SPARK_HOME" value="D:\腾讯大数据\spark-3.1.1-bin-hadoop2.7" />
+    <property name="java.class.path" value="D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\target\classes;C:\Users\www91\.m2\repository\org\apache\httpcomponents\httpcore\4.4.14\httpcore-4.4.14.jar;C:\Users\www91\.m2\repository\org\apache\httpcomponents\httpclient\4.5.13\httpclient-4.5.13.jar;C:\Users\www91\.m2\repository\commons-logging\commons-logging\1.2\commons-logging-1.2.jar;C:\Users\www91\.m2\repository\commons-codec\commons-codec\1.11\commons-codec-1.11.jar;C:\Users\www91\.m2\repository\com\alibaba\fastjson\1.2.73\fastjson-1.2.73.jar;D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\jgoodies-forms-1.8.0.jar;D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\miglayout15-swing.jar;D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation\target\test-classes;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.junit_4.13.0.v20200204-1500.jar;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.hamcrest.core_1.3.0.v20180420-1519.jar;D:\团队项目开发\Data Annotation\这是发git\Data-Annotations\DataAnnotation;D:\JAVA\Java\lib;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946\lib\ant-launcher.jar;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946\lib\ant.jar;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946\lib\ant-junit.jar;D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946\lib\ant-junit4.jar" />
+    <property name="env.HOMEPATH" value="\Users\www91" />
+    <property name="ant.library.dir" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946\lib" />
+    <property name="os.arch" value="amd64" />
+    <property name="env.OneDrive" value="C:\Users\www91\OneDrive" />
+    <property name="env.SESSIONNAME" value="Console" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="env.CommonProgramFiles" value="C:\Program Files\Common Files" />
+    <property name="ant.core.lib" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946\lib\ant.jar" />
+    <property name="env.ProgramFiles" value="C:\Program Files" />
+    <property name="env.JAVA8_HOME" value="C:\Program Files\Java\jdk1.8.0_211" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="file.separator" value="\" />
+    <property name="java.runtime.version" value="1.8.0_211-b12" />
+    <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_211\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_211\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_211\jre\classes" />
+    <property name="env.ComSpec" value="C:\WINDOWS\system32\cmd.exe" />
+    <property name="env.LNKEVN" value="C:\Program Files (x86)\Internet Explorer\iexplore.exe" />
+    <property name="env.TEMP" value="C:\Users\www91\AppData\Local\Temp" />
+    <property name="env.ANT_HOME" value="D:\JAVA\eclipse-java-2019-12-R-win32-x86_64\eclipse\plugins\org.apache.ant_1.10.9.v20201106-1946" />
+    <property name="user.country" value="CN" />
+    <property name="env.FPS_BROWSER_USER_PROFILE_STRING" value="Default" />
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="env.PSModulePath" value="C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules" />
+    <property name="env.QT_DEVICE_PIXEL_RATIO" value="auto" />
+    <property name="env.NVCUDASAMPLES_ROOT" value="C:\ProgramData\NVIDIA Corporation\CUDA Samples\v10.0" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="env.lib" value="d:\Program Files (x86)\mfc\lib;d:\Program Files (x86)\lib" />
+    <property name="sun.arch.data.model" value="64" />
+  </properties>
+  <testcase classname="Test.LoginTest" name="testLogin" time="0.207" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

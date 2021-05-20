@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.groupsix</groupId>
+  <artifactId>dataannotation</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+ <properties>
+   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<!-- log类 -->
+	<spring.version>5.2.3.RELEASE</spring.version>
+  </properties>
+  
+  <dependencies>
+  	<!-- log类 -->
+  	<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+    <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.30</version>
+        </dependency>
+	<dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+	
+	<dependency>
+            <groupId>org.netbeans</groupId>
+            <artifactId>jemmy</artifactId>
+            <version>2.2.7.5</version>
+            <scope>test</scope>
+       </dependency>
+       
+	<dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.4.14</version>
+        </dependency>
+	
+	<dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+        
+     <dependency>
+	    	<groupId>com.alibaba</groupId>
+	    	<artifactId>fastjson</artifactId>
+	   	 	<version>1.2.73</version>
+	  	</dependency>	
+
+	<!-- https://mvnrepository.com/artifact/org.jfree/jfreechart -->
+	<dependency>
+	    <groupId>org.jfree</groupId>
+	    <artifactId>jfreechart</artifactId>
+	    <version>1.0.19</version>
+	</dependency>
+	
+
+    <!-- appium自动化测试工具 -->
+    <dependency>
+    	<groupId>io.appium</groupId>
+    	<artifactId>java-client</artifactId>
+    	<version>7.0.0</version>
+    	<scope>test</scope>
+    </dependency>
+    <!-- testng测试框架 -->
+    <dependency>
+    	<groupId>org.testng</groupId>
+    	<artifactId>testng</artifactId>
+    	<version>7.1.0</version>
+    	<scope>test</scope>
+    </dependency>
+    <!-- 基于selenium的自动化测试工具 -->
+    <dependency>
+    	<groupId>org.seleniumhq.selenium</groupId>
+    	<artifactId>selenium-java</artifactId>
+    	<version>3.14.0</version>
+    </dependency>
+</dependencies>
+<!-- 定位testng.xml,执行指定测试操作 -->
+<build>
+  <plugins>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+           <artifactId>maven-surefire-plugin</artifactId>
+           <version>2.19</version>
+           <configuration>
+              <suiteXmlFiles>
+                 <suiteXmlFile>src/test/java/com/wyj/qt/ui/test/testcase/testng.xml</suiteXmlFile>
+              </suiteXmlFiles>
+           </configuration>
+     </plugin>
+  </plugins>
+</build>
+
+</project>
