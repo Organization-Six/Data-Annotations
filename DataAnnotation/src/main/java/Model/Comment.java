@@ -6,6 +6,7 @@ public class Comment implements java.io.Serializable{
 	private String cmtText;
 	private String cmtWriter;
 	private String cmtTime;
+	private boolean isConflict = false;
 	private boolean cmtIsMark;
 	
 	private ArrayList<String> labelList;
@@ -49,5 +50,11 @@ public class Comment implements java.io.Serializable{
 	}
 	public void setCmtTime(String cmtTime) {
 		this.cmtTime = cmtTime;
+	}
+	public void setIsConflict(boolean isConflict) {
+		this.isConflict = isConflict;
+	}
+	public boolean getIsConflict() {
+		return isConflict;
 	}
 }

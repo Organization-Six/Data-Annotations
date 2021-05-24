@@ -24,10 +24,10 @@ public class LabelBank {
     }
     
     @LogAnnotation(className = "Model.LabelBank" , content = "LabelBank : Save() trycatch")
-    public void Save() {
+    public void Save(String labelPath) {
         ObjectOutputStream oos = null;
         try {
-        	FileOutputStream fos = new FileOutputStream(LABEL_FILE_NAME);
+        	FileOutputStream fos = new FileOutputStream(labelPath);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(labelList);
             oos.close();
@@ -37,16 +37,16 @@ public class LabelBank {
     }
 
     @LogAnnotation(className = "Model.LabelBank" , content = "LabelBank : Load() trycatch")
-    public void Load() {
+    public void Load(String labelPath) {
         ObjectInputStream ois = null;
         labelList = new ArrayList<Label>();
         try {
-        	FileInputStream fis = new FileInputStream(LABEL_FILE_NAME);
+        	FileInputStream fis = new FileInputStream(labelPath);
             ois = new ObjectInputStream(fis);
             labelList = (ArrayList<Label>) ois.readObject();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
+    
 }

@@ -33,6 +33,7 @@ public class PasteController {
 	private CommentBank cmtBank;
 	
 	String item;
+	String type;
 	private final int index;
 	private Comment comment;
 	public PasteController(final CommentBank cmtBank, final LabelBank labBank, final int index,final PasteView view) {
@@ -54,12 +55,21 @@ public class PasteController {
 		PasteView.okButton.addActionListener(new ActionListener() {
 			@LogAnnotation(className = "Controller.PasteController" , content = "paste label to comment")
 			public void actionPerformed(ActionEvent e) {
-				if(comment.isCmtIsMark()) {
-					comment.getLabelList().add(item);
+				if(comment.isCmtIsMark()) {	
+					String k = null;
+			    	ArrayList<String> oldLabelList = comment.getLabelList();
+			    	for(String oldLabel : oldLabelList) {
+			    		if(oldLabel.contains(type)) 
+				    			k=oldLabel;			    							    			       			    
+				    }			    	
+		    		oldLabelList.remove(k);	
+	    			comment.setLabelList(oldLabelList);	
+					comment.getLabelList().add(type+"-"+item);
+					System.out.println(comment.getLabelList());
 				}
 				else {
 					comment.setCmtIsMark(true);
-					comment.setLabelList(new ArrayList<String>(Arrays.asList(item)));
+					comment.setLabelList(new ArrayList<String>(Arrays.asList(type+"-"+item)));
 				}
 				IndexView indexview = new IndexView(cmtBank, labBank);
 				indexview.setLocation(view.getLocation());
@@ -123,13 +133,13 @@ public class PasteController {
 	class LabelTypeListener implements ActionListener{
 		@LogAnnotation(className = "Controller.PasteController" , content = "update choiceList")
 		public void actionPerformed(ActionEvent e){//if (e.getSource() ==button1)
-			String type=e.getActionCommand();
+			type=e.getActionCommand();
 			for(int i = 0; i < labBank.getLabel().size(); i++) {
 				if(labBank.getLabel().get(i).getLabType().equals(type)) {
 					choiceList.clear();
 					choiceList.add(" ");
 					choiceList.addAll(labBank.getLabel().get(i).getLabChoise());
-					labels = (String[]) choiceList.toArray(new String[0]);
+					labels = (String[]) choiceList.toArray(new String[0]); 
 					labelRefresh();				
 				}
 			}

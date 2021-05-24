@@ -4,13 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
+import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JTable;
 
 import org.springframework.stereotype.Component;
 
 import Model.CommentBank;
+import Model.Label;
 import Model.LabelBank;
 import Model.LogAnnotation;
 import View.ChartView;
@@ -102,10 +105,34 @@ public class ShowLabelController {
 				// TODO 自动生成的方法存根
 //删除项响应		
 				if(row >= 0) {
-					System.out.println(labBank.getLabel().size()+"   111   " +row);
-					labBank.getLabel().remove(row);
-					//initData();
-					//ShowLabelView.this.revalidate();
+					System.out.println(labBank.getLabel().size()+"   111   " +row);																		
+					String oldType = labBank.getLabel().get(row).getLabType();
+					ArrayList<String> oldLabels = new ArrayList<String>();
+				    for(String choose:labBank.getLabel().get(row).getLabChoise()) {
+				    	oldLabels.add(choose);
+				    }
+				    Label oldLab = new Label(oldType,oldLabels);
+				    System.out.println(oldLab.getLabChoise());									
+					ArrayList<String> kList = new ArrayList<String>();
+				    for(int i = 0; i < cmtBank.getComment().size(); i++) {
+				    	ArrayList<String> oldLabelList = cmtBank.getComment().get(i).getLabelList();
+				    	for(String oldLabel : oldLabelList) {
+				    		if(oldLabel.contains(oldType)) {
+				    			kList.add(oldLabel);
+				    			//oldLabelList.remove(oldLabel);
+				    			System.out.println(oldLabel.split("-")[1]);
+				    			System.out.println(oldLab.getLabChoise());				       				    					    
+				    		}
+				    	}
+				    	for(String k : kList)
+				    		oldLabelList.remove(k);
+				    	cmtBank.getComment().get(i).setLabelList(oldLabelList);		
+				    	System.out.println(cmtBank.getComment().get(i).getLabelList());
+				    }
+				    labBank.getLabel().remove(row);
+				    //initData();
+					//ShowLabelView.this.revalidate();	
+				    
 					ShowLabelView showlabelview = new ShowLabelView(cmtBank, labBank, index);
 					showlabelview.setLocation(view.getLocation());
 					showlabelview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
