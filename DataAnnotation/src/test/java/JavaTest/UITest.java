@@ -273,7 +273,7 @@ public class UITest extends TestCase{
              }
          }));
 		 
-		 JEditorPaneOperator editTypeOpr = new JEditorPaneOperator(updateLabelViewOpr,2);
+		 JEditorPaneOperator editTypeOpr = new JEditorPaneOperator(updateLabelViewOpr,0);
 		 new Timeout("pausing",1000).sleep();
 		 editTypeOpr.setText("是否广告");
 		 new Timeout("pausing",1000).sleep();

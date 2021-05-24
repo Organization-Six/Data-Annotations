@@ -18,6 +18,9 @@ import Model.LabelBank;
 import Model.Spider;
 import Model.Spider.Data;
 import View.dialog.DownLoadDialog;
+import View.dialog.ExportDialog;
+import View.dialog.ImportDialog;
+import View.dialog.MessageDialog;
 
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -82,6 +85,8 @@ public class IndexView extends Frame {
 	public static JList list;
 	public static DefaultListModel d = new DefaultListModel();
 	private IndexController controller;
+	public static ImportDialog brsdialog;
+	public static ExportDialog exdialog;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public IndexView(final CommentBank cmtBank, final LabelBank labBank) {

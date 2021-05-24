@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite verbose="0" name="TestMainWindowCase" parallel="false">
+    <test name="JavaUiTest" preserve-order="false">
+    	<!-- 指定包测试-->
+        <!--<packages>
+            <package name="com.wyj.qt.ui.test.testcase" />
+        </packages>-->
+        <!-- 指定类测试-->
+       <!--<classes>
+            <class name="com.wyj.qt.ui.test.testcase.MainWindowTest"/>
+        </classes>-->
+        <!-- 指定方法测试-->
+        <classes>
+            <class name="com.wyj.qt.ui.test.testcase.MainWindowTest" >
+                <methods>
+                    <include name="textAreaTest" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

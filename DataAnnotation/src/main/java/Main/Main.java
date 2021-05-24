@@ -7,11 +7,6 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import Model.Chart;
@@ -25,9 +20,6 @@ import View.IndexView;
 //import View.LoginView;
 
 @Component
-@ComponentScan
-@EnableAspectJAutoProxy
-@Configuration
 public class Main {
 
 	public static void main(String[] args) {
@@ -38,13 +30,11 @@ public class Main {
 //			System.out.println(temp);
 //		}
 		
-	
-		
-		
 		
 		final CommentBank cmtBank = new CommentBank();
 		final LabelBank labBank = new LabelBank();
 		EventQueue.invokeLater(new Runnable() {
+			@LogAnnotation(className = "Main.Main" , content = "Main trycatch")
 			public void run() {
 				try {
 					//cmtBank.getComment().add(new Comment("无数据"," "," "));
