@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 
 import Model.CommentBank;
 import Model.LabelBank;
-import Model.LogAnnotation;
+import Model.LogAspect;
 import View.ShowLabelView;
 import View.UpdateLabelView;
 
@@ -32,8 +32,10 @@ public class UpdateLabelController {
 		this.row = row;
 		
 		UpdateLabelView.okButton.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.UpdateLabelController" , content = "update label")
 			public void actionPerformed(ActionEvent e) {
+				
+				LogAspect.Log("Controller.UpdateLabelController" , "update label");
+				
 				labBank.getLabel().get(row).setLabType(UpdateLabelView.labelTypeEditorPane.getText());
 				labBank.getLabel().get(row).getLabChoise().clear();
 				for(JEditorPane jep:UpdateLabelView.ep) {

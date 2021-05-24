@@ -1,0 +1,142 @@
+2021-05-24 16:17:03 [INFO] Main:Main trycatch
+2021-05-24 16:19:55 [INFO] PasteController:update choiceList
+2021-05-24 16:19:57 [INFO] PasteController:paste label to comment
+2021-05-24 16:22:47 [INFO] Main:Main trycatch
+2021-05-24 16:23:17 [INFO] IndexController:download comment
+2021-05-24 16:23:20 [INFO] Spider:Spider : Load() trycatch
+2021-05-24 16:23:20 [INFO] Spider:Spider : load() trycatch
+2021-05-24 16:23:20 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:20 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:21 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:21 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:21 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:21 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:21 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:21 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:22 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:22 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:22 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:22 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:22 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:23 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:23 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:23 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:23 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:23 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:23 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:24 [INFO] Spider:Spider : request() trycatch
+2021-05-24 16:23:24 [INFO] DownLoadBar:DownLoadBar
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:24 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:25 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:26 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:27 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:28 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:29 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:23:30 [INFO] DownLoadBar:process
+2021-05-24 16:24:31 [INFO] CreateLabelController:create Label
+2021-05-24 16:24:37 [INFO] PasteController:update choiceList
+2021-05-24 16:24:37 [INFO] PasteController:update choiceList
+2021-05-24 16:24:39 [INFO] PasteController:paste label to comment
+2021-05-24 16:24:42 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:42 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:44 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:44 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:45 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:45 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:48 [INFO] IndexController:remove comment
+2021-05-24 16:24:53 [INFO] IndexController:update labelComboBox
+2021-05-24 16:24:53 [INFO] IndexController:update labelComboBox

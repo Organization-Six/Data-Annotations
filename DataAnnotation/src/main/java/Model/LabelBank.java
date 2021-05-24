@@ -23,8 +23,11 @@ public class LabelBank {
         this.labelList = labList;
     }
     
-    @LogAnnotation(className = "Model.LabelBank" , content = "LabelBank : Save() trycatch")
+    
     public void Save() {
+    	
+    	LogAspect.Log(LABEL_FILE_NAME, "LabelBank : Save() trycatch");
+    	
         ObjectOutputStream oos = null;
         try {
         	FileOutputStream fos = new FileOutputStream(LABEL_FILE_NAME);
@@ -36,8 +39,11 @@ public class LabelBank {
         }
     }
 
-    @LogAnnotation(className = "Model.LabelBank" , content = "LabelBank : Load() trycatch")
+   
     public void Load() {
+    	
+    	LogAspect.Log("Model.LabelBank", "LabelBank : Load() trycatch");
+    	
         ObjectInputStream ois = null;
         labelList = new ArrayList<Label>();
         try {

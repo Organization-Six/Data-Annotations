@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Component;
 
-@Component
+
+
 public class CommentBank {
 	private ArrayList<Comment> commentList = new ArrayList<Comment>();
     private final String COMMENT_FILE_NAME = "comment.txt";
@@ -19,13 +20,17 @@ public class CommentBank {
         return commentList;
     }
     
-    public void setComment(ArrayList<Comment> cmtList) {
+    @SuppressWarnings("unchecked")
+	public void setComment( ArrayList<Comment> cmtList) {
         //this.commentList = cmtList;
     	this.commentList = (ArrayList<Comment>) cmtList.clone();
     }
-
-    @LogAnnotation(className = "Model.CommentBank" , content = "CommentBank : Save() trycatch")
+ 
+  
     public void Save() {
+    	
+    	LogAspect.Log("Model.CommentBank", "CommentBank : Save() trycatch");
+    	
         ObjectOutputStream oos = null;
         try {
         	FileOutputStream fos = new FileOutputStream(COMMENT_FILE_NAME);
@@ -37,8 +42,11 @@ public class CommentBank {
         }
     }
 
-    @LogAnnotation(className = "Model.CommentBank" , content = "CommentBank : Load() trycatch")
+   
     public void Load() {
+    	
+    	LogAspect.Log(COMMENT_FILE_NAME,  "CommentBank : Load() trycatch");
+    	
         ObjectInputStream ois = null;
         commentList = new ArrayList<Comment>();
         try {

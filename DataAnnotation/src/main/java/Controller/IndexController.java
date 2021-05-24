@@ -20,7 +20,8 @@ import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
-import Model.LogAnnotation;
+
+import Model.LogAspect;
 import Model.Spider;
 import Model.Spider.Data;
 import View.ChartView;
@@ -29,7 +30,7 @@ import View.PasteView;
 import View.ShowLabelView;
 import View.dialog.DownLoadDialog;
 
-@Component
+
 public class IndexController {
 	private CommentBank cmtBank;	
 	private LabelBank labBank;
@@ -54,10 +55,12 @@ public class IndexController {
 			}		
 		});	
 		IndexView.jm2.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.IndexController" , content = "remove comment")
+			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //删除项响应		
+				LogAspect.Log( "Controller.IndexController", "remove comment");
+				
 				System.out.println("进来了");
 				if(index >= 0) {
 					cmtBank.getComment().remove(index);
@@ -67,7 +70,7 @@ public class IndexController {
 			}		
 		});	
 		IndexView.importMenuItem.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.IndexController" , content = "import comment")
+			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根	
 
@@ -84,6 +87,8 @@ public class IndexController {
 //			        System.out.println(loadFilePath);
 //		        }
 		        
+				LogAspect.Log("Controller.IndexController", "import comment");
+				
 		        cmtBank.getComment().clear();
 				labBank.getLabel().clear();
 				cmtBank.Load();
@@ -95,7 +100,7 @@ public class IndexController {
 		});
 		
 		IndexView.exportMenuItem.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.IndexController" , content = "export comment")
+			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //				JFileChooser saveFileChooser = new JFileChooser();
@@ -112,7 +117,8 @@ public class IndexController {
 //			    	}
 //			    	System.out.println(file.getAbsolutePath());
 //			    }
-			    
+			    LogAspect.Log("Controller.IndexController", "export comment");
+				
 		    	cmtBank.Save();
 				labBank.Save();
 				JOptionPane.showMessageDialog(view, "导出成功");
@@ -126,9 +132,12 @@ public class IndexController {
 		});
 		
 		IndexView.downloadMenuItem.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.IndexController" , content = "download comment")
+			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
+				
+				LogAspect.Log("Controller.IndexController", "download comment");
+				
 				String exportStockID = null;
 				exportStockID = JOptionPane.showInputDialog(view,"请输入需要下载的股票代码","输入股票代码",JOptionPane.PLAIN_MESSAGE);
 				if(!(exportStockID.isEmpty())) {
@@ -187,8 +196,11 @@ public class IndexController {
 		IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
 		IndexView.labelComboBox.addItemListener(new ItemListener() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
-			@LogAnnotation(className = "Controller.IndexController" , content = "update labelComboBox")
+	
 			public void itemStateChanged(ItemEvent e){
+				
+				LogAspect.Log("Controller.IndexController", "update labelComboBox");
+				
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					String item = (String) e.getItem();
 					IndexView.d.clear();

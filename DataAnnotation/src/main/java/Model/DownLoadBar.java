@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import Model.Spider.Data;
 import View.IndexView; 
 
-@Component
+
 public class DownLoadBar extends SwingWorker<ArrayList<Comment>,String>{  
 	  
     private JLabel status;  
@@ -35,8 +35,10 @@ public class DownLoadBar extends SwingWorker<ArrayList<Comment>,String>{
     }  
   
     @Override  
-    @LogAnnotation(className = "Model.DownLoadBar" , content = "DownLoadBar")
     protected ArrayList<Comment> doInBackground() throws Exception {   
+    	
+    	LogAspect.Log( "Model.DownLoadBar" , "DownLoadBar");
+    	
         for(int i = 0; i < dataList.size(); i++){
         	if(isStop) {
         		break;
@@ -50,8 +52,11 @@ public class DownLoadBar extends SwingWorker<ArrayList<Comment>,String>{
     }  
     
     @Override
-    @LogAnnotation(className = "Model.DownLoadBar" , content = "process")
+
     protected void process(List<String> chunks) {  
+    	
+    	LogAspect.Log("Model.DownLoadBar", "process");
+    	
         status.setText(chunks.get(chunks.size()-1));
         System.out.println("chunks:"+chunks.get(chunks.size()-1).substring(chunks.get(chunks.size()-1).indexOf("(")+1,chunks.get(chunks.size()-1).indexOf(")")).trim());
         int x = Integer.parseInt(chunks.get(chunks.size()-1).substring(chunks.get(chunks.size()-1).indexOf("(")+1,chunks.get(chunks.size()-1).indexOf(")")).trim());  

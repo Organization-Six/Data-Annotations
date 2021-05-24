@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import Model.CommentBank;
 import Model.LabelBank;
-import Model.LogAnnotation;
+import Model.LogAspect;
 import View.ChartView;
 import View.CreateLabelView;
 import View.IndexView;
@@ -97,10 +97,11 @@ public class ShowLabelController {
 			}		
 		});	
 		ShowLabelView.jm2.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.ShowLabelController" , content = "remove label")
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //删除项响应		
+				LogAspect.Log("Controller.ShowLabelController", "remove label");
+				
 				if(row >= 0) {
 					System.out.println(labBank.getLabel().size()+"   111   " +row);
 					labBank.getLabel().remove(row);

@@ -16,7 +16,7 @@ import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
-import Model.LogAnnotation;
+import Model.LogAspect;
 import View.IndexView;
 import View.PasteView;
 import View.ShowLabelView;
@@ -52,8 +52,11 @@ public class PasteController {
 			}
 		});		
 		PasteView.okButton.addActionListener(new ActionListener() {
-			@LogAnnotation(className = "Controller.PasteController" , content = "paste label to comment")
+			
 			public void actionPerformed(ActionEvent e) {
+				
+				LogAspect.Log("Controller.PasteController", "paste label to comment");
+				
 				if(comment.isCmtIsMark()) {
 					comment.getLabelList().add(item);
 				}
@@ -121,8 +124,11 @@ public class PasteController {
 	
 	@Component
 	class LabelTypeListener implements ActionListener{
-		@LogAnnotation(className = "Controller.PasteController" , content = "update choiceList")
+		
 		public void actionPerformed(ActionEvent e){//if (e.getSource() ==button1)
+			
+			LogAspect.Log("Controller.PasteController", "update choiceList");
+			
 			String type=e.getActionCommand();
 			for(int i = 0; i < labBank.getLabel().size(); i++) {
 				if(labBank.getLabel().get(i).getLabType().equals(type)) {
