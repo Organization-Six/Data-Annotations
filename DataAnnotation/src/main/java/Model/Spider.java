@@ -17,11 +17,8 @@ import com.alibaba.fastjson.JSONObject;
 @Component
 public class Spider {
 	
-	
 	private static ArrayList<Data> load(String id) throws IOException{
-		
 		LogAspect.Log("Model.Spider", "Spider : load() trycatch");
-		
 		ArrayList<Data> dataArray = new ArrayList<Data>();
 		ArrayList<String> urls = setUrl(id);
 		for(String url:urls) {
@@ -57,9 +54,7 @@ public class Spider {
 	**
 	**@param url 爬取的网址
 	*/
-	
 	private static String request(String url) throws IOException{
-		
 		LogAspect.Log("Model.Spider",  "Spider : request() trycatch");
 		
 		String result = "";
@@ -158,7 +153,6 @@ public class Spider {
 	//输入错误的股票id但不含错误符号，网站会处理并返回200但是是空的json信息。这个问题还没处理。
 	
 	//已改
-	
 	public static ArrayList<Data> Load(String id) {
 		
 		LogAspect.Log("Model.Spider",  "Spider : Load() trycatch");
@@ -226,7 +220,6 @@ public class Spider {
 	 * @return Name = new
 	 * String(Name.getBytes("ISO-8859-1"), "utf-8");
 	 */
-	
 	public static String toUTF8(String str) {
 		
 		LogAspect.Log("Model.Spider", "Spider : toUTF8 trycatch");

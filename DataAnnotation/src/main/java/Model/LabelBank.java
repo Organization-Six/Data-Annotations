@@ -20,17 +20,17 @@ public class LabelBank {
     }
     
     public void setLabel(ArrayList<Label> labList) {
-        this.labelList = labList;
+        //this.labelList = labList;
+        this.labelList = (ArrayList<Label>) labList.clone();
     }
     
-    
-    public void Save() {
+    public void Save(String labelPath) {
     	
     	LogAspect.Log(LABEL_FILE_NAME, "LabelBank : Save() trycatch");
     	
         ObjectOutputStream oos = null;
         try {
-        	FileOutputStream fos = new FileOutputStream(LABEL_FILE_NAME);
+        	FileOutputStream fos = new FileOutputStream(labelPath);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(labelList);
             oos.close();
@@ -39,20 +39,64 @@ public class LabelBank {
         }
     }
 
-   
-    public void Load() {
+    public void Load(String labelPath) {
     	
     	LogAspect.Log("Model.LabelBank", "LabelBank : Load() trycatch");
     	
-        ObjectInputStream ois = null;
-        labelList = new ArrayList<Label>();
-        try {
-        	FileInputStream fis = new FileInputStream(LABEL_FILE_NAME);
-            ois = new ObjectInputStream(fis);
-            labelList = (ArrayList<Label>) ois.readObject();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
+    	if(labelList.size() > 0) {
+    		ArrayList<Label> newLabelList = new ArrayList<Label>();
+    		ObjectInputStream ois = null; 
+            try {
+            	FileInputStream fis = new FileInputStream(labelPath);
+                ois = new ObjectInputStream(fis);
+                newLabelList = (ArrayList<Label>) ois.readObject();
+                
+                for(int i=0;i<newLabelList.size();i++) {
+                	Label newLabel = newLabelList.get(i);
+                	boolean isExist = false;
+                	for(int j=0;j<labelList.size();j++) {
+                		Label oldLabel = labelList.get(j);
+                		if(newLabel.getLabType().equals(oldLabel.getLabType())) { 
+                			isExist = true;
+                			for(String newChoose:newLabel.getLabChoise()) {
+                				boolean isContain = false;
+                				for(String oldChoose:oldLabel.getLabChoise()) {
+                					if(newChoose.equals(oldChoose)) {
+                						isContain = true;
+                						break;
+                					}               					
+                				}
+                				if(!isContain) 
+                					oldLabel.getLabChoise().add(newChoose);
+                			}
+                			break;
+                		}                		
+                	}
+                	if(!isExist)
+                		labelList.add(newLabel);
+                }
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+    	}
+    	else {
+	        ObjectInputStream ois = null;
+	        labelList = new ArrayList<Label>();
+	        try {
+	        	FileInputStream fis = new FileInputStream(labelPath);
+	            ois = new ObjectInputStream(fis);
+	            labelList = (ArrayList<Label>) ois.readObject();
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+    	}
     }
+    
 }
+
+
+
+
+
+
+

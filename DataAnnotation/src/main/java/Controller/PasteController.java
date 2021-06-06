@@ -33,6 +33,7 @@ public class PasteController {
 	private CommentBank cmtBank;
 	
 	String item;
+	String type;
 	private final int index;
 	private Comment comment;
 	public PasteController(final CommentBank cmtBank, final LabelBank labBank, final int index,final PasteView view) {
@@ -52,18 +53,29 @@ public class PasteController {
 			}
 		});		
 		PasteView.okButton.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent e) {
-				
 				LogAspect.Log("Controller.PasteController", "paste label to comment");
-				
-				if(comment.isCmtIsMark()) {
-					comment.getLabelList().add(item);
+				if(comment.isCmtIsMark()) {	
+					String k = null;
+			    	ArrayList<String> oldLabelList = comment.getLabelList();
+			    	for(String oldLabel : oldLabelList) {
+			    		if(oldLabel.contains(type)) 
+				    			k=oldLabel;			    							    			       			    
+				    }			    	
+		    		oldLabelList.remove(k);	
+	    			comment.setLabelList(oldLabelList);	
+					comment.getLabelList().add(type+"-"+item.split(" ")[0]);
+					System.out.println(comment.getLabelList());
 				}
 				else {
 					comment.setCmtIsMark(true);
-					comment.setLabelList(new ArrayList<String>(Arrays.asList(item)));
+					comment.setLabelList(new ArrayList<String>(Arrays.asList(type+"-"+item.split(" ")[0])));
 				}
+				
+				if(comment.getIsConflict()) {
+					cmtBank.getComment().get(index).setConfirm(true);
+				}
+				
 				IndexView indexview = new IndexView(cmtBank, labBank);
 				indexview.setLocation(view.getLocation());
 				indexview.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -110,9 +122,16 @@ public class PasteController {
 	
 	private void labelRefresh() {
 		PasteView.labelPane.removeAll();
-		ButtonGroup labelButtonGroup=new ButtonGroup();		
+		ButtonGroup labelButtonGroup=new ButtonGroup();
+		ArrayList<String> temp = CommentBank.table.get(index);
 		for(int i = 0; i < labels.length; i++) {
-			JRadioButton labelRb=new JRadioButton(labels[i]);			
+			int count = 0;
+			for(String str: temp) {
+				if(str.contains(labels[i]) && str.contains(type)) {
+					count++;
+				}
+			}
+			JRadioButton labelRb=new JRadioButton(labels[i]+" " + Integer.toString(count));			
 			labelRb.setBounds(5+i%3*125,i/3*20,120,20);
 			labelRb.setFont(new Font("瀹嬩綋", Font.PLAIN, 14));
 			labelRb.addActionListener(new LabelListener());		
@@ -124,18 +143,15 @@ public class PasteController {
 	
 	@Component
 	class LabelTypeListener implements ActionListener{
-		
 		public void actionPerformed(ActionEvent e){//if (e.getSource() ==button1)
-			
 			LogAspect.Log("Controller.PasteController", "update choiceList");
-			
-			String type=e.getActionCommand();
+			type=e.getActionCommand();
 			for(int i = 0; i < labBank.getLabel().size(); i++) {
 				if(labBank.getLabel().get(i).getLabType().equals(type)) {
 					choiceList.clear();
 					choiceList.add(" ");
 					choiceList.addAll(labBank.getLabel().get(i).getLabChoise());
-					labels = (String[]) choiceList.toArray(new String[0]);
+					labels = (String[]) choiceList.toArray(new String[0]); 
 					labelRefresh();				
 				}
 			}

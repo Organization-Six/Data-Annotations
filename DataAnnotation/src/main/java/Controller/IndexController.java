@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -20,7 +21,6 @@ import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
-
 import Model.LogAspect;
 import Model.Spider;
 import Model.Spider.Data;
@@ -29,14 +29,20 @@ import View.IndexView;
 import View.PasteView;
 import View.ShowLabelView;
 import View.dialog.DownLoadDialog;
+import View.dialog.ExportDialog;
+import View.dialog.ImportDialog;
 
-
+@Component
 public class IndexController {
 	private CommentBank cmtBank;	
 	private LabelBank labBank;
 	private int index;
 	private ArrayList<String> choiceList = new ArrayList<String>();
 	private String[] labels;
+	public static String commentPath = "";
+	public static String labelPath = "";
+	
+	//public static ArrayList table = new ArrayList();
 	
 	@SuppressWarnings("unchecked")
 	public IndexController(final CommentBank cmtBank, final LabelBank labBank,final IndexView view) {
@@ -55,24 +61,26 @@ public class IndexController {
 			}		
 		});	
 		IndexView.jm2.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
 //删除项响应		
 				LogAspect.Log( "Controller.IndexController", "remove comment");
-				
 				System.out.println("进来了");
 				if(index >= 0) {
 					cmtBank.getComment().remove(index);
 					initData();
+					CommentBank.table.remove(index);
 					System.out.println(cmtBank.getComment().size());
 				}
 			}		
 		});	
 		IndexView.importMenuItem.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent arg0) {
-				// TODO 自动生成的方法存根	
+				// TODO 自动生成的方法存根
+				LogAspect.Log( "Controller.IndexController", "import comment");
+				commentPath = "";
+				labelPath = "";
+				initport();
 
 //				JFileChooser loadFileChooser=new JFileChooser();
 //				String loadFilePath;
@@ -86,23 +94,35 @@ public class IndexController {
 //		        	loadFilePath = loadFileChooser.getSelectedFile().getAbsolutePath();
 //			        System.out.println(loadFilePath);
 //		        }
-		        
-				LogAspect.Log("Controller.IndexController", "import comment");
-				
-		        cmtBank.getComment().clear();
-				labBank.getLabel().clear();
-				cmtBank.Load();
-				labBank.Load();
-				System.out.println(cmtBank.getComment().get(0).getCmtText());
-				initImport();
-				JOptionPane.showMessageDialog(view, "导入成功");
+
+				if (view.brsdialog.fileflag == true) {
+//					cmtBank.getComment().clear();
+//					labBank.getLabel().clear();
+					
+					try {
+						cmtBank.Load(commentPath);
+						labBank.Load(labelPath);
+						System.out.println(cmtBank.getComment().get(0).getCmtText());
+						initImport();						
+						JOptionPane.showMessageDialog(view, "导入成功");
+					} catch(Exception e) {
+						JOptionPane.showMessageDialog(view, "导入失败");
+					}
+				}
+
 			}
+
+			
 		});
 		
 		IndexView.exportMenuItem.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
+				LogAspect.Log( "Controller.IndexController", "export comment");
+				commentPath = "";
+				labelPath = "";
+				initexport();
+				
 //				JFileChooser saveFileChooser = new JFileChooser();
 //				saveFileChooser.setDialogTitle("请选择保存路径");
 //				saveFileChooser.setCurrentDirectory(new File("./"));
@@ -117,27 +137,31 @@ public class IndexController {
 //			    	}
 //			    	System.out.println(file.getAbsolutePath());
 //			    }
-			    LogAspect.Log("Controller.IndexController", "export comment");
-				
-		    	cmtBank.Save();
-				labBank.Save();
-				JOptionPane.showMessageDialog(view, "导出成功");
-				cmtBank.getComment().clear();
-				labBank.getLabel().clear();
-				IndexView.d.clear();
-				initData();
-				IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
+
+				if (view.exdialog.fileflag == true) {
+					
+					try {
+						cmtBank.Save(commentPath);
+						labBank.Save(labelPath);
+						JOptionPane.showMessageDialog(view, "导出成功");
+						cmtBank.getComment().clear();
+						labBank.getLabel().clear();
+						IndexView.d.clear();
+						initData();
+						IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
+					} catch(Exception e) {
+						JOptionPane.showMessageDialog(view, "导出失败");
+					}
+					
+				}
 
 			}
 		});
 		
 		IndexView.downloadMenuItem.addActionListener(new ActionListener() {
-			
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO 自动生成的方法存根
-				
-				LogAspect.Log("Controller.IndexController", "download comment");
-				
+				LogAspect.Log( "Controller.IndexController", "download comment");
 				String exportStockID = null;
 				exportStockID = JOptionPane.showInputDialog(view,"请输入需要下载的股票代码","输入股票代码",JOptionPane.PLAIN_MESSAGE);
 				if(!(exportStockID.isEmpty())) {
@@ -196,17 +220,27 @@ public class IndexController {
 		IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
 		IndexView.labelComboBox.addItemListener(new ItemListener() {
 			@SuppressWarnings({ "unchecked", "rawtypes" })
-	
 			public void itemStateChanged(ItemEvent e){
-				
-				LogAspect.Log("Controller.IndexController", "update labelComboBox");
-				
+				LogAspect.Log( "Controller.IndexController", "update labelComboBox");
 				if(e.getStateChange() == ItemEvent.SELECTED){
 					String item = (String) e.getItem();
 					IndexView.d.clear();
 					if(e.getItem().equals("全部")) {
+						IndexView.conflictList.clear();
+						IndexView.confirmList.clear();
 						for(int i = 0; i < cmtBank.getComment().size(); i++) {
-							IndexView.d.addElement(cmtBank.getComment().get(i).getCmtWriter() + " " + cmtBank.getComment().get(i).getCmtTime() + " "+ cmtBank.getComment().get(i).getCmtText());
+							Comment comment = cmtBank.getComment().get(i);
+							if(comment.getIsConflict()) {
+								if(comment.isConfirm()) {
+									IndexView.confirmList.add(i);
+								}
+								else {
+									IndexView.conflictList.add(i);
+								}
+								IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+							}
+							else
+								IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
 							IndexView.list = new JList(IndexView.d);
 						}
 						if(IndexView.d.getSize() == 0) {
@@ -214,9 +248,22 @@ public class IndexController {
 						}
 					}
 					else if(e.getItem().equals("未分类")) {
+						IndexView.conflictList.clear();
+						IndexView.confirmList.clear();
 						for(int i = 0; i < cmtBank.getComment().size(); i++) {
 							if(!(cmtBank.getComment().get(i).isCmtIsMark())) {
-								IndexView.d.addElement(cmtBank.getComment().get(i).getCmtWriter() + " " + cmtBank.getComment().get(i).getCmtTime() + " "+ cmtBank.getComment().get(i).getCmtText());
+								Comment comment = cmtBank.getComment().get(i);
+								if(comment.getIsConflict()) {
+									if(comment.isConfirm()) {
+										IndexView.confirmList.add(i);
+									}
+									else {
+										IndexView.conflictList.add(i);
+									}
+									IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+								}
+								else
+									IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
 								IndexView.list = new JList(IndexView.d);
 							}
 						}
@@ -226,10 +273,24 @@ public class IndexController {
 						
 					}
 					else {
+						IndexView.conflictList.clear();
+						IndexView.confirmList.clear();
 						for(int i = 0; i < cmtBank.getComment().size(); i++) {
+							System.out.println(cmtBank.getComment().get(i).getLabelList());
 							if(cmtBank.getComment().get(i).getLabelList().contains(item)) {
 								//d.clear();
-								IndexView.d.addElement(cmtBank.getComment().get(i).getCmtWriter() + " " + cmtBank.getComment().get(i).getCmtTime() + " "+ cmtBank.getComment().get(i).getCmtText());
+								Comment comment = cmtBank.getComment().get(i);
+								if(comment.getIsConflict()) {
+									if(comment.isConfirm()) {
+										IndexView.confirmList.add(i);
+									}
+									else {
+										IndexView.conflictList.add(i);
+									}
+									IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+								}
+								else
+									IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
 								IndexView.list = new JList(IndexView.d);
 							}
 							else {
@@ -249,22 +310,55 @@ public class IndexController {
 		//只有默认的模型有添加/删除方法
 		choiceList.clear();
 		IndexView.d.clear();
+		IndexView.conflictList.clear();
+		IndexView.confirmList.clear();
 		if(cmtBank.getComment().size() == 0) {
 			IndexView.d.addElement("无数据");
 		}
 		for(int i = 0; i < cmtBank.getComment().size(); i++){
-			Comment comment = cmtBank.getComment().get(i);
-			IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+			Comment comment = cmtBank.getComment().get(i);			
+			if(comment.getIsConflict()) {
+				if(comment.isConfirm()) {
+					IndexView.confirmList.add(i);
+				}
+				else {
+					IndexView.conflictList.add(i);
+				}
+//	    		System.out.println("冲突");
+				IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+			}
+			else
+				IndexView.d.addElement(comment.getCmtWriter()+ "-"+comment.getCmtTime()+"-"+comment.getCmtText());
+//    		System.out.println(IndexView.d.get(0));
 		}
+		
 		
 		choiceList.add("全部");
 		choiceList.add("未分类");
 		for(int i = 0; i < labBank.getLabel().size(); i++){
 			Label label = labBank.getLabel().get(i);
-			choiceList.addAll(label.getLabChoise());			
+			for(String choose:label.getLabChoise()) {
+				choiceList.add(label.getLabType()+"-"+choose);
+			}
+			//choiceList.addAll(label.getLabChoise());			
 		}
 		labels = (String[]) choiceList.toArray(new String[0]);
 		//System.out.println(cmtBank.getComment().get(0).getCmtText());
+	}
+	
+	
+	private void initport() {
+		IndexView.brsdialog = new ImportDialog(null, "选择文件");
+		IndexView.brsdialog.setLocationRelativeTo(null);;
+		IndexView.brsdialog.setModal(true);
+		IndexView.brsdialog.setVisible(true);
+	}
+	
+	private void initexport() {
+		IndexView.exdialog = new ExportDialog(null, "选择文件");
+		IndexView.exdialog.setLocationRelativeTo(null);;
+		IndexView.exdialog.setModal(true);
+		IndexView.exdialog.setVisible(true);
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -284,11 +378,13 @@ public class IndexController {
 //		}
 //		System.out.println(d.getSize());
 		initData();
-		IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));
+		IndexView.labelComboBox.setModel(new DefaultComboBoxModel(labels));		
 		IndexView.list = new JList(IndexView.d);
+		
 
 
 	}
+	
 	@SuppressWarnings("unchecked")
 	private void initImport() {
 		//cmtBank = new CommentBank();

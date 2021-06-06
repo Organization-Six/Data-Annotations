@@ -19,12 +19,12 @@ public class LabelBankTest {
     @Before
     public void setUp() throws Exception {
     	labBankBackup = new LabelBank();
-    	labBankBackup.Load();
+    	labBankBackup.Load("label.txt");
     }
 
     @After
     public void tearDown() throws Exception {
-    	labBankBackup.Save();
+    	labBankBackup.Save("label.txt");
     }
 
     @Test
@@ -42,10 +42,10 @@ public class LabelBankTest {
         assertEquals(0, labBankSaverTest.getLabel().size());
         labBankSaverTest.getLabel().add(new Label("身高",new ArrayList<String>(Arrays.asList("高","矮"))));
         labBankSaverTest.getLabel().add(new Label("体重",new ArrayList<String>(Arrays.asList("胖","瘦","中等"))));
-        labBankSaverTest.Save();
+        labBankSaverTest.Save("label.txt");
 
         LabelBank labBankLoader = new LabelBank();
-        labBankLoader.Load();
+        labBankLoader.Load("label.txt");
 
         assertNotNull(labBankLoader.getLabel());
         assertEquals(labBankSaverTest.getLabel().size(),labBankLoader.getLabel().size());
@@ -66,10 +66,10 @@ public class LabelBankTest {
     public void saveEmpty() {
     	LabelBank labBank = new LabelBank();
         assertEquals(0, labBank.getLabel().size());
-        labBank.Save();
+        labBank.Save("label.txt");
 
         LabelBank labBankLoader = new LabelBank();
-        labBankLoader.Load();
+        labBankLoader.Load("label.txt");
 
         assertNotNull(labBankLoader.getLabel());
         assertEquals(0,labBankLoader.getLabel().size());

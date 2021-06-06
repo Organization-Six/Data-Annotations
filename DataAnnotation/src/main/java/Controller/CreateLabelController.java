@@ -19,7 +19,7 @@ import Model.LogAspect;
 import View.CreateLabelView;
 import View.ShowLabelView;
 
-
+@Component
 public class CreateLabelController {
 	private CommentBank cmtBank;
 	private LabelBank labBank;
@@ -37,9 +37,7 @@ public class CreateLabelController {
 		
 		CreateLabelView.okButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				LogAspect.Log("Controller.CreateLabelController","create Label");
-				
 				ArrayList<String> choiceList = new ArrayList<String>();
 				choiceList.add(CreateLabelView.label1EditorPane.getText());
 				choiceList.add(CreateLabelView.label2EditorPane.getText());

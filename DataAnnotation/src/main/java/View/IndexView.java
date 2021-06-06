@@ -15,9 +15,12 @@ import Model.Comment;
 import Model.CommentBank;
 import Model.Label;
 import Model.LabelBank;
+import Model.MyRenderer;
 import Model.Spider;
 import Model.Spider.Data;
 import View.dialog.DownLoadDialog;
+import View.dialog.ExportDialog;
+import View.dialog.ImportDialog;
 import View.dialog.MessageDialog;
 
 import javax.swing.JMenuBar;
@@ -83,6 +86,10 @@ public class IndexView extends Frame {
 	public static JList list;
 	public static DefaultListModel d = new DefaultListModel();
 	private IndexController controller;
+	public static ImportDialog brsdialog;
+	public static ExportDialog exdialog;
+	public static ArrayList<Integer> conflictList = new ArrayList<Integer>();
+	public static ArrayList<Integer> confirmList = new ArrayList<Integer>();
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public IndexView(final CommentBank cmtBank, final LabelBank labBank) {
@@ -103,23 +110,27 @@ public class IndexView extends Frame {
 
 		popupMenu.add(jm1);
 		popupMenu.add(jm2);
+
 		
 		list.setFont(new Font("宋体", Font.PLAIN, 24));
 		list.setBounds(42, 100, 900, 136);	
 		list.setFixedCellWidth(list.getBounds().width);
 		list.setFixedCellHeight(40);
 		//边框
-		list.setCellRenderer(new ListCellRenderer() {
-			public Component getListCellRendererComponent(JList arg0, Object arg1, int arg2, boolean arg3,
-					boolean arg4) {
-				// TODO 自动生成的方法存根
-				DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
-			    Border lineBorder = BorderFactory.createLineBorder(new Color(121,121,121),1);
-				JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(arg0, arg1, arg2, arg3, arg4);		    
-		        renderer.setBorder(lineBorder);
-		        return renderer;
-			}
-		});
+		list.setCellRenderer(new MyRenderer(conflictList, confirmList));
+		
+//		list.setCellRenderer(new ListCellRenderer() {
+//			public Component getListCellRendererComponent(JList arg0, Object arg1, int arg2, boolean arg3,
+//					boolean arg4) {
+//				// TODO 自动生成的方法存根
+//				DefaultListCellRenderer defaultRenderer = new DefaultListCellRenderer();
+//			    Border lineBorder = BorderFactory.createLineBorder(new Color(121,121,121),1);
+//				JLabel renderer = (JLabel) defaultRenderer.getListCellRendererComponent(arg0, arg1, arg2, arg3, arg4);		    
+//		        renderer.setBorder(lineBorder);		        
+//		        		      
+//		        return renderer;
+//			}
+//		});
 		
 		scrollPane.setViewportView(list);
 		panel.add(scrollPane);

@@ -7,11 +7,6 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import Model.Chart;
@@ -24,7 +19,7 @@ import Model.Spider;
 import View.IndexView;
 //import View.LoginView;
 
-
+@Component
 public class Main {
 
 	public static void main(String[] args) {
@@ -36,20 +31,13 @@ public class Main {
 //		}
 		
 		
-	
-		
-		
-		
 		final CommentBank cmtBank = new CommentBank();
 		final LabelBank labBank = new LabelBank();
-
 		EventQueue.invokeLater(new Runnable() {
-			
 			public void run() {
+				LogAspect.Log("Main.Main",  "Main trycatch");
+				
 				try {
-					
-					LogAspect.Log("Main.Main",  "Main trycatch");
-					
 					//cmtBank.getComment().add(new Comment("无数据"," "," "));
 					IndexView index = new IndexView(cmtBank, labBank);
 					index.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -16,12 +16,12 @@ public class CommentBankTest {
     @Before
     public void setUp() throws Exception {
     	cmtBankBackup = new CommentBank();
-    	cmtBankBackup.Load();
+    	cmtBankBackup.Load("comment.txt");
     }
 
     @After
     public void tearDown() throws Exception {
-    	cmtBankBackup.Save();
+    	cmtBankBackup.Save("comment.txt");
     }
 
     @Test
@@ -39,10 +39,10 @@ public class CommentBankTest {
         assertEquals(0, cmtBankSaverTest.getComment().size());
         cmtBankSaverTest.getComment().add(new Comment("中国平安", "maluko", "2021-5-2"));
         cmtBankSaverTest.getComment().add(new Comment("中国人寿", "张三", "2021-5-4"));
-        cmtBankSaverTest.Save();
+        cmtBankSaverTest.Save("comment.txt");
 
         CommentBank cmtBankLoader = new CommentBank();
-        cmtBankLoader.Load();
+        cmtBankLoader.Load("comment.txt");
 
         assertNotNull(cmtBankLoader.getComment());
         assertEquals(cmtBankSaverTest.getComment().size(),cmtBankLoader.getComment().size());
@@ -65,10 +65,10 @@ public class CommentBankTest {
     public void saveEmpty() {
     	CommentBank cmtBank = new CommentBank();
         assertEquals(0, cmtBank.getComment().size());
-        cmtBank.Save();
+        cmtBank.Save("comment.txt");
 
         CommentBank cmtBankLoader = new CommentBank();
-        cmtBankLoader.Load();
+        cmtBankLoader.Load("comment.txt");
 
         assertNotNull(cmtBankLoader.getComment());
         assertEquals(0,cmtBankLoader.getComment().size());

@@ -39,7 +39,8 @@ public class MessageDialog extends JFrame {
 			@SuppressWarnings("restriction")
 			public void run() {
 				//Բ��
-				
+				com.sun.awt.AWTUtilities.setWindowShape(MessageDialog.this,new RoundRectangle2D.Float(0,0,width,height,12f,12f));   
+				com.sun.awt.AWTUtilities.setWindowOpacity(MessageDialog.this, 1f);
 			}   
 		});
 		
